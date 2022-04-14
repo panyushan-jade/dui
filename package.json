@@ -24,7 +24,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "preinstall": "npx npm-limit yarn",
-    
     "lint:stylelint": "stylelint src/**/*.{css,scss} --fix --custom-syntax postcss-scss",
     "lint:eslint": "eslint --fix --ext .js,.jsx,.ts,.tsx"
   },
@@ -57,6 +56,7 @@
     "prettier": "^2.6.2",
     "stylelint": "^14.6.1",
     "stylelint-config-standard": "^25.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-scss": "^4.2.0"
   }
 }
