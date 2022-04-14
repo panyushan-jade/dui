@@ -1,0 +1,8 @@
+dist
+/node_modules
+.eslintrc.js
+docs/
+.md
+.json
+.log
+.vscode

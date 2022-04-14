@@ -22,7 +22,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "preinstall": "npx npm-limit yarn",
+    
+    "lint:stylelint": "stylelint src/**/*.{css,scss} --fix --custom-syntax postcss-scss",
+    "lint:eslint": "eslint --fix --ext .js,.jsx,.ts,.tsx"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +47,16 @@
     ]
   },
   "devDependencies": {
-    "@umijs/fabric": "^2.10.2"
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "postcss-scss": "^4.0.3",
+    "prettier": "^2.6.2",
+    "stylelint": "^14.6.1",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-scss": "^4.2.0"
   }
 }

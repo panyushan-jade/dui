@@ -1,6 +1,3 @@
 module.exports = {
-    extends: [require.resolve('@umijs/fabric/dist/stylelint')],
-    rules: {
-      // your rules
-    },
-  };
+  "extends": "stylelint-config-standard"
+};
