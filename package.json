@@ -24,14 +24,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "preinstall": "npx npm-limit yarn",
+    "prepare": "npx husky install",
     "lint:stylelint": "stylelint src/**/*.{css,scss} --fix --custom-syntax postcss-scss",
     "lint:eslint": "eslint --fix --ext .js,.jsx,.ts,.tsx"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -45,9 +40,32 @@
       "last 1 safari version"
     ]
   },
+  "lint-staged": {
+    "**/src/*.{js,jsx,ts,tsx}": [
+      "eslint --fix --ext .ts,.tsx"
+    ],
+    "**/*.{css,scss}": [
+      "stylelint --fix --custom-syntax postcss-scss"
+    ],
+    "*.{js,jsx,,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
   "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
+    "commitizen": "^4.2.4",
+    "cz-customizable": "^6.3.0",
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
