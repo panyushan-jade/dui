@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,16 +16,11 @@
     "noEmit": true,
     "baseUrl": "./",
     "paths": {
-      "src": [
-        "./src/*"
-      ]
+      "src": ["./src/*"]
     },
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "typeRoots": ["./src/react-app-env.d.ts", "./src/types.d.ts"] // 解决.d.ts无效问题
   },
-  "include": [
-    "src",
-    "/**/*.ts",
-    "/**/*.tsx"
-  ],
+  "include": ["src", "/**/*.ts", "/**/*.tsx"],
   "exclude": ["node_modules", "build"]
 }
