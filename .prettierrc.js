@@ -1,5 +1,5 @@
 module.exports = {
-  semi: true,
+  // semi: true,
   // singleQuote:  true,
   tabWidth: 2,
 };
