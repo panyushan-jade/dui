@@ -11,5 +11,8 @@ module.exports = {
     // "dollar-variable-empty-line-before": null,
     // "max-empty-lines": 100,
     // "dollar-variable-empty-line-before": false,
+    "scss/no-global-function-names": null,
+    "function-no-unknown": null,
+    "scss/double-slash-comment-whitespace-inside": null,
   },
 };
