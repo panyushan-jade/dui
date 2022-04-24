@@ -182,6 +182,7 @@ $btn-border-width: $border-width !default;
 // 按钮其他
 $btn-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
 $btn-disabled-opacity: 0.65 !default;
+$btn-disabled-background: darken($gray-600,0.5);
 
 // 链接按钮
 $btn-link-color: $link-color !default;

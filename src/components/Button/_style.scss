@@ -1,0 +1,66 @@
+.dui-btn{
+    position: relative;
+    display: inline-block;
+    font-weight: $font-weight-normal;
+    white-space: nowrap; // 不换行
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: $btn-border-width solid $border-color;
+    // border-radius: $btn-border-radius;
+    // font-size: $btn-font-size;
+    // padding: $btn-padding-y $btn-padding-x;
+    @include button-size($btn-padding-y,$btn-padding-x,$btn-font-size,$btn-border-radius);
+    user-select: none;
+    transition: $btn-transition;
+    box-shadow: $btn-box-shadow;
+    &[disabled]{
+        cursor: not-allowed;
+        box-shadow:none;
+        > *{
+            pointer-events: none
+        }
+    }
+}
+
+.dui-btn-large{
+    @include button-size($btn-padding-y-lg,$btn-padding-x-lg,$btn-font-size-lg,$btn-border-radius-lg);
+}
+.dui-btn-small{
+    @include button-size($btn-padding-y-sm,$btn-padding-x-sm,$btn-font-size-sm,$btn-border-radius-sm);
+}
+
+.dui-btn-default{
+    @include button-style($white, $gray-400, $body-color, $white, $primary, $primary)
+}
+
+.dui-btn-primary{
+    @include button-style($primary, $primary, $white)
+}
+
+.dui-btn-danger{    
+    @include button-style($danger,$danger,$white)
+}
+
+.dui-btn-link{
+    font-weight: $font-weight-normal;
+    color: $btn-link-color;
+    text-decoration: none;
+    box-shadow: none;
+    border: none;
+    &:hover {
+        color: $btn-link-hover-color;
+        text-decoration: none; 
+    }
+    &:focus,
+    &.focus {
+        text-decoration: none;
+        box-shadow: none;
+    }
+    &:disabled,
+    &.dui-btn-disabled {
+        color: darken($btn-link-disabled-color, $amount: 2%);
+        pointer-events: none;
+        cursor: none;
+    }
+}
