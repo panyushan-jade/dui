@@ -2,6 +2,7 @@ import React from "react";
 
 import Button from "src/components/Button";
 import Alert from "src/components/Alert";
+import Progress from "src/components/Progress";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
       </Button>
       <h3>Alert</h3>
       <Alert message="哈哈哈" />
+      <Progress
+        value={16}
+        color="pink"
+        style={{ height: 10, width: 500 }}
+      ></Progress>
     </div>
   );
 }
