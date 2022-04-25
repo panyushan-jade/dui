@@ -182,7 +182,7 @@ $btn-border-width: $border-width !default;
 // 按钮其他
 $btn-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
 $btn-disabled-opacity: 0.65 !default;
-$btn-disabled-background: darken($gray-600,0.5);
+$btn-disabled-background: darken($gray-600, 0.5);
 
 // 链接按钮
 $btn-link-color: $link-color !default;
@@ -264,3 +264,9 @@ $progress-bg: $gray-200 !default;
 $progress-border-radius: $border-radius !default;
 $progress-bar-color: $white !default;
 $progress-bar-transition: width 0.6s ease !default;
+
+// alert
+$alert-padding-y: 0.35rem !default;
+$alert-padding-x-left: 1rem !default;
+$alert-padding-x-right: 10rem !default;
+$alert-font-color: #000000d9;

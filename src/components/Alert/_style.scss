@@ -1,0 +1,17 @@
+.dui-alert {
+  padding: $alert-padding-y $alert-padding-x-right $alert-padding-y $alert-padding-x-left;
+  font-size: $font-size-base;
+  display: inline-block;
+}
+
+@each $key, $val in $theme-colors {
+  .dui-alert-#{$key} {
+    background-color: transparentize($val, 0.7);
+    color: $alert-font-color;
+    border: 1px solid $val;
+  }
+}
+
+// .dui-alert-success{
+//     $theme-colors.success
+// }
