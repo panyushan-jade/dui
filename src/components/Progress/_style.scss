@@ -1,0 +1,13 @@
+.groove {
+  width: 100%;
+  height: 10px;
+  background: #e1e1e1;
+  border-radius: 5px;
+  overflow: hidden;
+
+  .progress {
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+}
