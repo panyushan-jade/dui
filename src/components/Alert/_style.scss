@@ -2,16 +2,55 @@
   padding: $alert-padding-y $alert-padding-x-right $alert-padding-y $alert-padding-x-left;
   font-size: $font-size-base;
   display: inline-block;
+
+  .dui-alert-message {
+    font-size: $alert-message-font-size;
+  }
+
+  .dui-alert-description {
+    font-size: $alert-description-font-size;
+  }
+
+  .dui-alert-message-with-description {
+    margin-bottom: 10px;
+    color: lighten($black, 10%);
+  }
 }
 
 @each $key, $val in $theme-colors {
   .dui-alert-#{$key} {
-    background-color: transparentize($val, 0.7);
-    color: $alert-font-color;
-    border: 1px solid $val;
+    background-color: transparentize($val, 0.9);
+    color: transparentize($alert-font-color, 0.1);
+    border: 1px solid transparentize($val, 0.8);
+    display: flex;
+    justify-content: space-between;
+    opacity: 1;
   }
 }
 
-// .dui-alert-success{
-//     $theme-colors.success
-// }
+.dui-alert-close {
+  cursor: pointer;
+  user-select: none;
+
+  &:focus {
+    color: red;
+  }
+}
+
+.dui-alert-close-transition {
+  animation: pyss 0.5s ease-in-out forwards;
+}
+
+@keyframes pyss {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    // height: 0;
+    // padding: 0;
+    // border: none;
+  }
+}
