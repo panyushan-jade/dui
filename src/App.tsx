@@ -44,6 +44,15 @@ function App() {
           closable
         />
       </div>
+      <div style={{ width: 300 }}>
+        <Alert
+          type="error"
+          message="description"
+          description="我是一段描述~~~"
+          closable
+          closeText="关闭"
+        />
+      </div>
 
       <Progress
         value={16}

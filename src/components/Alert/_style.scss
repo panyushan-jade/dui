@@ -31,6 +31,7 @@
 .dui-alert-close {
   cursor: pointer;
   user-select: none;
+  font-size: $font-size-sm;
 
   &:focus {
     color: red;
@@ -39,6 +40,10 @@
 
 .dui-alert-close-transition {
   animation: pyss 0.5s ease-in-out forwards;
+}
+
+.dui-alert-transition-end {
+  display: none;
 }
 
 @keyframes pyss {
