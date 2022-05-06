@@ -45,7 +45,7 @@ const Alert: React.FC<IAlertProps> = (props) => {
     }, 500);
   };
 
-  // 这里先用x代替关闭图标 因为还没做icon组件
+  // 这里先用x代替关闭图标 因为还没做icon组件 test
   return (
     <div className={classNames} {...restprops}>
       <div className="dui-alert-content">
