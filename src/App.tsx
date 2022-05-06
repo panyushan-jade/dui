@@ -21,10 +21,44 @@ function App() {
         a disabled
       </Button>
       <h3>Alert</h3>
-      <Alert message="哈哈哈" />
+      <div style={{ width: 300 }}>
+        <Alert message="success" />
+      </div>
+      <div style={{ width: 300 }}>
+        <Alert type="info" message="info" />
+      </div>
+      <div style={{ width: 300 }}>
+        <Alert type="warning" message="warning" />
+      </div>
+      <div style={{ width: 300 }}>
+        <Alert type="error" message="error" />
+      </div>
+      <div style={{ width: 300 }}>
+        <Alert type="error" message="onClose" closable />
+      </div>
+      <div style={{ width: 300 }}>
+        <Alert
+          type="error"
+          message="description"
+          description="我是一段描述~~~"
+          closable
+        />
+      </div>
+      <div style={{ width: 300 }}>
+        <Alert
+          type="error"
+          message="description"
+          description="我是一段描述~~~"
+          closable
+          closeText="关闭"
+        />
+      </div>
+
       <Progress
-        value={16}
-        color="pink"
+        type="circle"
+        RingWidth={5}
+        value={60}
+        radius={100}
         style={{ height: 10, width: 500 }}
       ></Progress>
     </div>

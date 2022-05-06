@@ -26,6 +26,7 @@ $success: $green !default;
 $info: $cyan !default;
 $warning: $yellow !default;
 $danger: $red !default;
+$error: $red !default;
 $light: $gray-100 !default;
 $dark: $gray-800 !default;
 $theme-colors: (
@@ -35,6 +36,7 @@ $theme-colors: (
   "info": $info,
   "warning": $warning,
   "danger": $danger,
+  "error": $error,
   "light": $light,
   "dark": $dark,
 );
@@ -268,5 +270,7 @@ $progress-bar-transition: width 0.6s ease !default;
 // alert
 $alert-padding-y: 0.35rem !default;
 $alert-padding-x-left: 1rem !default;
-$alert-padding-x-right: 10rem !default;
+$alert-padding-x-right: 1rem !default;
 $alert-font-color: #000000d9;
+$alert-message-font-size: $font-size-base * 1.1 !default;
+$alert-description-font-size: $font-size-base * 0.8 !default;

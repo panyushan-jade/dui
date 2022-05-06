@@ -11,3 +11,15 @@
     overflow: hidden;
   }
 }
+
+.circle-progress {
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    position: absolute;
+    font-size: 1em;
+  }
+}
