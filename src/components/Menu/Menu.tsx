@@ -5,7 +5,7 @@ export interface IMenuProps {
 }
 
 const Menu: React.FC<IMenuProps> = (props) => {
-  console.log("props: ", props);
+  console.log("props:222 ", props);
   return <div>Menu</div>;
 };
 
