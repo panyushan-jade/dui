@@ -3,10 +3,18 @@ import React from "react";
 import Button from "src/components/Button";
 import Alert from "src/components/Alert";
 import Progress from "src/components/Progress";
+import Menu from "src/components/Menu/Menu";
+import MenuItem from "src/components/Menu/MenuItem";
 
 function App() {
   return (
     <div className="App">
+      <h3>Menu</h3>
+      <Menu>
+        <MenuItem>我是MenuItem1</MenuItem>
+        <MenuItem>我是MenuItem2</MenuItem>
+        <MenuItem>我是MenuItem3</MenuItem>
+      </Menu>
       <h3>Button</h3>
       <Button type="link">我是link</Button>
       <Button>我是default</Button>
@@ -53,7 +61,7 @@ function App() {
           closeText="关闭"
         />
       </div>
-
+      <h3>Progress</h3>
       <Progress
         type="circle"
         RingWidth={5}
