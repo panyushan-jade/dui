@@ -5,4 +5,12 @@
   outline: none;
   list-style: none;
   color: $black;
+
+  .dui-menu-item {
+    padding: 0 10px;
+  }
+}
+
+.dui-menu-horizontal {
+  display: flex;
 }

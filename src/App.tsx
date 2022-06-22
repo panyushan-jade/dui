@@ -8,7 +8,7 @@ import MenuItem from "src/components/Menu/MenuItem";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ padding: 50 }}>
       <h3>Menu</h3>
       <Menu>
         <MenuItem>我是MenuItem1</MenuItem>
