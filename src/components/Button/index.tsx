@@ -30,22 +30,37 @@ type IButtonProps = AllOptionalButtonprops & IBaseButtonProps;
 
 const Button: React.FC<IButtonProps | IBaseButtonProps> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { type = "default", size = "middle",danger,disabled, children,className:cusClassname,...restprops } = props;
-  console.log('props--',props);
-  console.log('props--1',{...restprops});
-  
+  const {
+    type = "default",
+    size = "middle",
+    danger,
+    disabled,
+    children,
+    className: cusClassname,
+    ...restprops
+  } = props;
+
   //如果是link类型就生成a标签
-  const classNames = className(cusClassname,
-    'dui-btn',
-    {[`dui-btn-${type}`]:true},
-    {[`dui-btn-${size}`]:true},
-    {[`dui-btn-disabled`]: type === 'link'},
-    {[`dui-btn-danger`]:danger},
-  )
+  const classNames = className(
+    cusClassname,
+    "dui-btn",
+    { [`dui-btn-${type}`]: true },
+    { [`dui-btn-${size}`]: true },
+    { [`dui-btn-disabled`]: type === "link" },
+    { [`dui-btn-danger`]: danger }
+  );
   if (type === "link") {
-    return <a className={classNames} {...restprops}>{children}</a>;
+    return (
+      <a className={classNames} {...restprops}>
+        {children}
+      </a>
+    );
   } else {
-    return <button disabled={disabled} className={classNames} {...restprops}>{children}</button>;
+    return (
+      <button disabled={disabled} className={classNames} {...restprops}>
+        {children}
+      </button>
+    );
   }
 };
 // Button.defaultProps = {

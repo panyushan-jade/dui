@@ -5,9 +5,11 @@
   outline: none;
   list-style: none;
   color: $black;
+  border-bottom: $menu-border-color solid $menu-border-width;
 
   .dui-menu-item {
-    padding: 0 10px;
+    padding: 10px;
+    flex: 1;
   }
 }
 

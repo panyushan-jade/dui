@@ -1,28 +1,54 @@
-import React from "react";
+import React, { createContext } from "react";
 import classnames from "classnames";
+
+import { IMenuItemProps } from "./MenuItem";
 
 type mode = "vertical" | "horizontal";
 
-export interface IMenuProps {
-  className?: string;
-  mode?: mode; // 菜单类型 水平 垂直
-  defaultOpenKeys?: string[]; // 初始展开的 SubMenu 菜单项 key 数组
-  defaultSelectedKeys?: string[]; // 初始选中的菜单项 key 数组
-  style?: React.CSSProperties; // 根节点样式
+interface IBaseProps {
+  defaultOpenKeys?: string[];
+  defaultSelectedKeys?: string[];
   onSelect?: (key: string) => void;
   onClick?: (key: string) => void;
+  mode?: mode;
+}
+export interface IMenuProps extends IBaseProps {
+  className?: string;
+  style?: React.CSSProperties; // 根节点样式
 }
 
+export const menuContext = createContext<IBaseProps>({});
+
 const Menu: React.FC<IMenuProps> = (props) => {
-  const { className, style, children, mode } = props;
+  const { className, style, children, mode, defaultSelectedKeys } = props;
+
+  const passonContext: IBaseProps = {
+    mode,
+    defaultSelectedKeys,
+  };
+
+  console.log("passonContext", passonContext);
+
   const classes = classnames("dui-menu", className, {
     "dui-menu-horizontal": mode === "horizontal",
     "dui-menu-vertical": mode === "vertical",
   });
 
+  const renderChildren = () => {
+    const newChildren =
+      children as React.FunctionComponentElement<IMenuItemProps>;
+    return React.Children.map(newChildren, (child, index) => {
+      return React.cloneElement(child, {
+        index: index.toString(),
+      });
+    });
+  };
+
   return (
     <ul style={style} className={classes}>
-      {children}
+      <menuContext.Provider value={passonContext}>
+        {renderChildren()}
+      </menuContext.Provider>
     </ul>
   );
 };

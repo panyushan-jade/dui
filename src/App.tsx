@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App" style={{ padding: 50 }}>
       <h3>Menu</h3>
-      <Menu>
+      <Menu style={{ width: 500 }}>
         <MenuItem>我是MenuItem1</MenuItem>
         <MenuItem>我是MenuItem2</MenuItem>
         <MenuItem>我是MenuItem3</MenuItem>

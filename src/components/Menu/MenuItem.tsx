@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import classnames from "classnames";
+
+import { menuContext } from "./Menu";
 
 export interface IMenuItemProps {
   className?: string;
@@ -9,8 +11,10 @@ export interface IMenuItemProps {
 }
 
 const MenuItem: React.FC<IMenuItemProps> = (props) => {
-  const { className, children } = props;
-  const classes = classnames("dui-menu-item", className);
+  const { className, children, index } = props;
+  const context = useContext(menuContext);
+  console.log("context====>", context);
+  const classes = classnames("dui-menu-item", `${index}-cus`, className);
 
   return <li className={classes}>{children}</li>;
 };
