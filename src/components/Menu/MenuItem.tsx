@@ -14,9 +14,17 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
   const { className, children, index } = props;
   const context = useContext(menuContext);
   console.log("context====>", context);
-  const classes = classnames("dui-menu-item", `${index}-cus`, className);
+  const classes = classnames("dui-menu-item", className, {
+    "dui-menu-item-active": index
+      ? context.defaultSelectedKeys?.includes(index)
+      : false,
+  });
 
-  return <li className={classes}>{children}</li>;
+  return (
+    <li className={classes}>
+      <span>{children}</span>
+    </li>
+  );
 };
 
 export default MenuItem;
