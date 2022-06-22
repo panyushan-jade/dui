@@ -12,6 +12,7 @@
     flex: 1;
     text-align: center;
     position: relative;
+    transition: color 0.3s ease-in-out;
 
     &::after {
       position: absolute;
@@ -29,6 +30,7 @@
       }
 
       cursor: pointer;
+      color: $menu-item-active-color;
     }
   }
 
@@ -36,6 +38,8 @@
     &::after {
       border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
     }
+
+    color: $menu-item-active-color;
   }
 }
 

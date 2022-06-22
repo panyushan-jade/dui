@@ -11,9 +11,11 @@ function App() {
     <div className="App" style={{ padding: 50 }}>
       <h3>Menu</h3>
       <Menu style={{ width: 500 }} defaultSelectedKeys={["0"]}>
-        <MenuItem>我是MenuItem1</MenuItem>
-        <MenuItem>我是MenuItem2</MenuItem>
-        <MenuItem>我是MenuItem3</MenuItem>
+        <MenuItem key="1" className="sssssss">
+          我是MenuItem1
+        </MenuItem>
+        <MenuItem key="0">我是MenuItem2</MenuItem>
+        <MenuItem key="2">我是MenuItem3</MenuItem>
       </Menu>
       <h3>Button</h3>
       <Button type="link">我是link</Button>
