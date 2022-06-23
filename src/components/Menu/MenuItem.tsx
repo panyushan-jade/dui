@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import classnames from "classnames";
 
 import { menuContext } from "./Menu";
@@ -7,25 +7,26 @@ export interface IMenuItemProps {
   className?: string;
   eventKey?: string;
   index?: string;
+  disabled?: boolean;
 }
 
 const MenuItem: React.FC<IMenuItemProps> = (props) => {
-  const { className, children, eventKey, index } = props;
+  const { className, children, eventKey, index, disabled } = props;
   console.log("props======>", props);
+  const [currentHover, setCurrentHover] = useState("");
 
   const context = useContext(menuContext);
-  // console.log("context====>", context);
-  // console.log("context1====>", context.activeKey?.includes(key));
-  const classes = classnames("dui-menu-item", className, {
+  const classes = classnames("dui-menu-item", className, currentHover, {
     "dui-menu-item-active": eventKey
       ? context.activeKey?.includes(eventKey)
       : index
       ? context.activeKey?.includes(index)
       : false,
+    "dui-menu-item-disabled": disabled,
   });
 
   const handleClick = () => {
-    if (context.onSelect) {
+    if (context.onSelect && !disabled) {
       if (index) {
         context.onSelect(index);
       }
@@ -34,10 +35,21 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
       }
     }
   };
-
+  const onMouseEnter = () => {
+    if (disabled) return;
+    setCurrentHover("dui-menu-item-hover");
+  };
+  const onMouseLeave = () => {
+    setCurrentHover("");
+  };
   return (
-    <li className={classes} onClick={handleClick}>
-      <span>{children}</span>
+    <li
+      className={classes}
+      onClick={handleClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <span className="ant-menu-title-content">{children}</span>
     </li>
   );
 };

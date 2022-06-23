@@ -7,39 +7,110 @@
   color: $black;
   border-bottom: $menu-border-color solid $menu-border-width;
 
-  .dui-menu-item {
+  ul {
+    list-style: none;
+  }
+
+  .dui-menu-item,
+  .dui-menu-submenu {
+    white-space: nowrap;
     padding: 10px;
     flex: 1;
     text-align: center;
     position: relative;
     transition: color 0.3s ease-in-out;
+    color: $black;
 
-    &::after {
-      position: absolute;
-      right: 20px;
-      bottom: 0;
-      left: 20px;
-      border-bottom: $menu-item-active-border-width solid transparent;
-      transition: border-color 0.3s ease-in-out;
-      content: "";
+    .ant-menu-title-content {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        right: 10px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        top: 32px;
+        border-bottom: $menu-item-active-border-width solid transparent;
+        transition: border-color 0.3s ease-in-out;
+        content: "";
+      }
     }
+  }
 
-    &:hover {
+  .dui-menu-item-hover {
+    .ant-menu-title-content {
+      cursor: pointer;
+      color: $menu-item-active-color;
+
       &::after {
         border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
       }
-
-      cursor: pointer;
-      color: $menu-item-active-color;
     }
   }
 
   .dui-menu-item-active {
+    .ant-menu-title-content {
+      &::after {
+        border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+      }
+
+      color: $menu-item-active-color;
+    }
+  }
+
+  .dui-menu-item-disabled {
+    color: #00000040 !important;
+    background: 0 0;
+    cursor: not-allowed;
+
     &::after {
-      border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+      border-bottom: $menu-item-active-border-width solid transparent;
+    }
+  }
+
+  .dui-menu-submenu-hover {
+    > .ant-menu-title-content {
+      cursor: pointer;
+      color: $menu-item-active-color;
+
+      &::after {
+        border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+      }
     }
 
-    color: $menu-item-active-color;
+    .dui-menu-submenu-item {
+      max-height: 100vh !important;
+    }
+  }
+
+  .dui-menu-submenu {
+    position: relative;
+
+    .dui-menu-submenu-item {
+      position: absolute;
+      z-index: 1050;
+      background-color: $white;
+      top: 36px;
+      left: 0;
+      padding-left: 0;
+      box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+
+      .ant-menu-title-content {
+        &::after {
+          border-bottom: $menu-item-active-border-width solid transparent;
+        }
+      }
+
+      .dui-menu-item-hover {
+        .ant-menu-title-content {
+          color: $menu-item-active-color;
+        }
+      }
+    }
   }
 }
 
