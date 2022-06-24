@@ -6,8 +6,8 @@ import { IMenuItemProps } from "./MenuItem";
 type mode = "vertical" | "horizontal";
 
 interface IBaseProps {
-  defaultOpenKeys?: string[];
-  defaultSelectedKeys?: string[];
+  // defaultOpenKeys?: string[];
+  defaultSelectedKey?: string;
   onSelect?: (key: string) => void;
   mode?: mode;
 }
@@ -17,20 +17,20 @@ export interface IMenuProps extends IBaseProps {
 }
 
 interface IMenuContext {
-  activeKey: string[];
+  activeKey?: string;
   onSelect?: (selectedIndex: string) => void;
   mode?: mode;
-  defaultSelectedKeys?: string[];
+  defaultSelectedKey?: string;
 }
 
-export const menuContext = createContext<IMenuContext>({ activeKey: ["0"] });
+export const menuContext = createContext<IMenuContext>({});
 
 const Menu: React.FC<IMenuProps> = (props) => {
-  const { className, style, children, mode, defaultSelectedKeys, onSelect } =
+  const { className, style, children, mode, defaultSelectedKey, onSelect } =
     props;
-  const [activeKey, setActiveKey] = useState(defaultSelectedKeys || []);
+  const [activeKey, setActiveKey] = useState(defaultSelectedKey || "");
   const onHandleSelect = (key: string) => {
-    setActiveKey([key]);
+    setActiveKey(key);
     if (onSelect) {
       onSelect(key);
     }
@@ -45,16 +45,25 @@ const Menu: React.FC<IMenuProps> = (props) => {
     "dui-menu-vertical": mode === "vertical",
   });
 
-  const renderChildren = () => {
-    const newChildren =
-      children as React.FunctionComponentElement<IMenuItemProps>;
-    return React.Children.map(newChildren, (child, index) => {
-      console.log("child===>", child);
+  /* 
+   如果用户传key则使用key，没有则使用index
+  */
 
-      return React.cloneElement(child, {
-        index: index.toString(),
-        eventKey: child.key as string,
-      });
+  const renderChildren = () => {
+    return React.Children.map(children, (child, index) => {
+      const newChildren =
+        child as React.FunctionComponentElement<IMenuItemProps>;
+      const { displayName } = newChildren.type;
+      if (displayName === "MenuItem" || displayName === "SubMenu") {
+        return React.cloneElement(newChildren, {
+          index: index.toString(),
+          eventKey: newChildren.key as string,
+        });
+      } else {
+        console.warn(
+          "Warning: Menu has a child which is not a MenuItem component"
+        );
+      }
     });
   };
 

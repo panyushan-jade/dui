@@ -16,12 +16,16 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
   const [currentHover, setCurrentHover] = useState("");
 
   const context = useContext(menuContext);
+  const shouldActive = () => {
+    if (eventKey && typeof eventKey !== "string") return false;
+    return (
+      context.activeKey === (eventKey || index) ||
+      context.activeKey?.indexOf((eventKey as string) || (index as string)) ===
+        0
+    );
+  };
   const classes = classnames("dui-menu-item", className, currentHover, {
-    "dui-menu-item-active": eventKey
-      ? context.activeKey?.includes(eventKey)
-      : index
-      ? context.activeKey?.includes(index)
-      : false,
+    "dui-menu-item-active": shouldActive(),
     "dui-menu-item-disabled": disabled,
   });
 
@@ -54,4 +58,5 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
   );
 };
 
+MenuItem.displayName = "MenuItem";
 export default MenuItem;

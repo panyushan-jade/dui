@@ -11,16 +11,16 @@ function App() {
   return (
     <div className="App" style={{ padding: 50 }}>
       <h3>Menu</h3>
-      <Menu style={{ width: 800 }} defaultSelectedKeys={["1"]}>
-        <MenuItem key="0" disabled>
-          我是MenuItem1
-        </MenuItem>
-        <MenuItem key="1">我是MenuItem2</MenuItem>
-        <MenuItem key="2">我是MenuItem3</MenuItem>
-        <SubMenu title="我是SubMenu" key="3">
-          <MenuItem key="1">我是submenu1</MenuItem>
-          <MenuItem key="2">我是submenu2</MenuItem>
+      <Menu style={{ width: 800 }} defaultSelectedKey="1">
+        <MenuItem disabled>我是MenuItem1</MenuItem>
+        <MenuItem>我是MenuItem2</MenuItem>
+        <MenuItem>我是MenuItem3</MenuItem>
+        <SubMenu title="我是SubMenu">
+          <MenuItem>我是submenu1</MenuItem>
+          <MenuItem>我是submenu2</MenuItem>
+          <div>1111</div>
         </SubMenu>
+        <div>222</div>
       </Menu>
       <h3>Button</h3>
       <Button type="link">我是link</Button>

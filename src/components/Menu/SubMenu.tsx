@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import classnames from "classnames";
 
-// import { IMenuItemProps } from "./MenuItem";
-
+import { IMenuItemProps } from "./MenuItem";
+import { menuContext } from "./Menu";
 export interface ISubMenuProps {
   eventKey?: string;
   index?: string;
@@ -11,47 +11,46 @@ export interface ISubMenuProps {
 }
 
 const SubMenu: React.FC<ISubMenuProps> = (props) => {
-  const { title, children } = props;
+  const { title, children, index, eventKey, disabled } = props;
   const [currentHover, setCurrentHover] = useState("");
 
-  //   const context = useContext(menuContext);
-  const classes = classnames("dui-menu-submenu", currentHover);
-  //   {
-  //     "dui-menu-item-active": eventKey
-  //       ? context.activeKey?.includes(eventKey)
-  //       : index
-  //       ? context.activeKey?.includes(index)
-  //       : false,
-  //      "dui-menu-item-disabled": disabled
-  //   }
+  const context = useContext(menuContext);
+  console.log("context====>: ", context);
+  console.log("context====>111: ", index);
+  console.log("context====>2222: ", eventKey);
+  const classes = classnames("dui-menu-submenu", currentHover, {
+    "dui-menu-submenu-active": eventKey
+      ? context.activeKey?.includes(eventKey)
+      : index
+      ? context.activeKey?.includes(index)
+      : false,
+    "dui-menu-submenu-disabled": disabled,
+  });
 
-  //   const handleClick = () => {
-  //     if (context.onSelect && !disabled) {
-  //       if (index) {
-  //         context.onSelect(index);
-  //       }
-  //       if (eventKey) {
-  //         context.onSelect(eventKey);
-  //       }
-  //     }
-  //   };
   const onMouseEnter = () => {
-    // if(disabled) return
+    if (disabled) return;
     setCurrentHover("dui-menu-submenu-hover");
   };
   const onMouseLeave = () => {
     setCurrentHover("");
   };
-  // const renderChildren = () => {
-  //     const newChildren =
-  //     children as React.FunctionComponentElement<IMenuItemProps>;
-  //     return React.Children.map(newChildren, (child, index) => {
-  //     return React.cloneElement(child, {
-  //         index: index.toString(),
-  //         eventKey: child.key as string,
-  //     });
-  //     });
-  // };
+  const renderSubMenuChildren = () => {
+    const newChildren =
+      children as React.FunctionComponentElement<IMenuItemProps>;
+    return React.Children.map(newChildren, (child, subIndex) => {
+      const { displayName } = child.type;
+      if (displayName === "MenuItem") {
+        return React.cloneElement(child, {
+          index: eventKey ? `${eventKey}-${subIndex}` : `${index}-${subIndex}`,
+          eventKey: child.key as string,
+        });
+      } else {
+        console.warn(
+          "Warning: SubMenu has a child which is not a MenuItem component"
+        );
+      }
+    });
+  };
   return (
     <li
       className={classes}
@@ -60,10 +59,11 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
     >
       <span className="ant-menu-title-content">
         {title}
-        <ul className="dui-menu-submenu-item">{children}</ul>
+        <ul className="dui-menu-submenu-item">{renderSubMenuChildren()}</ul>
       </span>
     </li>
   );
 };
-
+// 设置别名（用来判断children的类型）
+SubMenu.displayName = "SubMenu";
 export default SubMenu;
