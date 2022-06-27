@@ -22,6 +22,17 @@ function App() {
         </SubMenu>
         <div>222</div>
       </Menu>
+      <Menu style={{ width: 800 }} mode="vertical" defaultSelectedKey="1">
+        <MenuItem disabled>我是MenuItem1</MenuItem>
+        <MenuItem>我是MenuItem2</MenuItem>
+        <MenuItem>我是MenuItem3</MenuItem>
+        <SubMenu title="我是SubMenu">
+          <MenuItem>我是submenu1</MenuItem>
+          <MenuItem>我是submenu2</MenuItem>
+          <div>1111</div>
+        </SubMenu>
+        <div>222</div>
+      </Menu>
       <h3>Button</h3>
       <Button type="link">我是link</Button>
       <Button>我是default</Button>
