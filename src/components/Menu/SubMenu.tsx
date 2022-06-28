@@ -61,6 +61,7 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
         {title}
         <ul className="dui-menu-submenu-item">{renderSubMenuChildren()}</ul>
       </span>
+      <span className="dui-menu-submenu-icon">{">"}</span>
     </li>
   );
 };

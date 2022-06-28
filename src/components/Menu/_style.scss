@@ -125,3 +125,34 @@
 .dui-menu-horizontal {
   display: flex;
 }
+
+.dui-menu-vertical {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #f4f4f4;
+  border-bottom: none;
+
+  .dui-menu-item,
+  .dui-menu-submenu {
+    display: flex;
+
+    .ant-menu-title-content {
+      &::after {
+        content: "";
+        border-bottom: none;
+      }
+    }
+  }
+
+  .dui-menu-item-hover {
+    .ant-menu-title-content {
+      color: $menu-item-active-color;
+      transition: all 0.3s ease-in-out;
+
+      &::after {
+        content: "";
+        border-bottom: none;
+      }
+    }
+  }
+}

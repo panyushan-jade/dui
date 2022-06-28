@@ -14,5 +14,6 @@ module.exports = {
     "scss/no-global-function-names": null,
     "function-no-unknown": null,
     "scss/double-slash-comment-whitespace-inside": null,
+    "no-descending-specificity": null,
   },
 };
