@@ -12,7 +12,6 @@ export interface IMenuItemProps {
 
 const MenuItem: React.FC<IMenuItemProps> = (props) => {
   const { className, children, eventKey, index, disabled } = props;
-  console.log("props======>", props);
   const [currentHover, setCurrentHover] = useState("");
 
   const context = useContext(menuContext);

@@ -13,17 +13,18 @@ export interface ISubMenuProps {
 const SubMenu: React.FC<ISubMenuProps> = (props) => {
   const { title, children, index, eventKey, disabled } = props;
   const [currentHover, setCurrentHover] = useState("");
-
+  const [collapse, setCollapse] = useState<boolean>(false);
   const context = useContext(menuContext);
-  console.log("context====>: ", context);
-  console.log("context====>111: ", index);
-  console.log("context====>2222: ", eventKey);
+  const shouldActive = () => {
+    if (context.mode === "vertical") return false;
+    if (eventKey && typeof eventKey !== "string") return false;
+    return (
+      context.activeKey?.includes(eventKey as string) ||
+      context.activeKey?.includes(index as string)
+    );
+  };
   const classes = classnames("dui-menu-submenu", currentHover, {
-    "dui-menu-submenu-active": eventKey
-      ? context.activeKey?.includes(eventKey)
-      : index
-      ? context.activeKey?.includes(index)
-      : false,
+    "dui-menu-submenu-active": shouldActive(),
     "dui-menu-submenu-disabled": disabled,
   });
 
@@ -51,17 +52,57 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
       }
     });
   };
+
+  const handleClick = () => {
+    if (disabled) return;
+    setCollapse(!collapse);
+  };
+
+  const renderMode = () => {
+    if (context.mode === "vertical") {
+      return (
+        <>
+          <span className="ant-menu-title-content" onClick={handleClick}>
+            {title}
+            <span
+              className={classnames("dui-menu-submenu-icon", {
+                "dui-menu-submenu-icon-switch": collapse,
+              })}
+            >
+              {">"}
+            </span>
+          </span>
+          <ul
+            className={classnames("dui-menu-submenu-item", {
+              "dui-menu-submenu-collapse-open": collapse,
+            })}
+          >
+            {renderSubMenuChildren()}
+          </ul>
+        </>
+      );
+    } else {
+      return (
+        <span className="ant-menu-title-content">
+          {title}
+          <ul className="dui-menu-submenu-item">{renderSubMenuChildren()}</ul>
+        </span>
+      );
+    }
+  };
+
   return (
     <li
       className={classes}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <span className="ant-menu-title-content">
+      {renderMode()}
+      {/* <span className="ant-menu-title-content">
         {title}
         <ul className="dui-menu-submenu-item">{renderSubMenuChildren()}</ul>
       </span>
-      <span className="dui-menu-submenu-icon">{">"}</span>
+      { context.mode === 'vertical' ? <span className="dui-menu-submenu-icon">{">"}</span> : null } */}
     </li>
   );
 };
