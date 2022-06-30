@@ -6,10 +6,25 @@ import Progress from "src/components/Progress";
 import Menu from "src/components/Menu/Menu";
 import MenuItem from "src/components/Menu/MenuItem";
 import SubMenu from "src/components/Menu/SubMenu";
+import Carousel from "src/components/Carousel";
+
+import image1 from "src/assets/image1.webp";
+import image2 from "src/assets/image2.webp";
+import image3 from "src/assets/image3.webp";
 
 function App() {
   return (
     <div className="App" style={{ padding: 50 }}>
+      <h3>Carousel</h3>
+      <div style={{ width: 500 }}>
+        <Carousel>
+          <img src={image1} alt="image1" />
+          <img src={image2} alt="image2" />
+          <img src={image3} alt="image3" />
+          {null}
+          {undefined}
+        </Carousel>
+      </div>
       <h3>Menu</h3>
       <Menu style={{ width: 800 }} defaultSelectedKey="1">
         <MenuItem disabled>我是MenuItem1</MenuItem>
