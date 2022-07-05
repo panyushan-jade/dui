@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App" style={{ padding: 50 }}>
       <h3>Carousel</h3>
-      <div style={{ width: 500 }}>
+      <div style={{ width: 670, border: "2px solid red" }}>
         <Carousel>
           <img src={image1} alt="image1" />
           <img src={image2} alt="image2" />
