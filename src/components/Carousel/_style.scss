@@ -10,6 +10,13 @@
     width: 100%;
     aspect-ratio: 2 / 1;
   }
+
+  position: relative;
+  transition: all 0.3s;
+}
+
+.dui-carousel-item {
+  aspect-ratio: 2 / 1;
 }
 
 .dui-carousel {
@@ -46,5 +53,44 @@
   .dui-carousel-indicator-active {
     width: 24px;
     opacity: 1;
+  }
+}
+
+.dui-carousel-prev {
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: #fff;
+  opacity: 0.5;
+  color: black;
+  font-size: 30px;
+  padding: 10px 5px;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.dui-carousel-next {
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: #fff;
+  opacity: 0.5;
+  color: black;
+  font-size: 30px;
+  padding: 10px 5px;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
   }
 }

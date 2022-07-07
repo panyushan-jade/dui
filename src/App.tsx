@@ -17,7 +17,7 @@ function App() {
     <div className="App" style={{ padding: 50 }}>
       <h3>Carousel</h3>
       <div style={{ width: 670, border: "2px solid red" }}>
-        <Carousel>
+        <Carousel autoplay>
           <img src={image1} alt="image1" />
           <img src={image2} alt="image2" />
           <img src={image3} alt="image3" />
