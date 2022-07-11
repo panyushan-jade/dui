@@ -1,18 +1,28 @@
-import React, { useState, useRef, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import React, { useState, useRef, useEffect, useImperativeHandle } from "react";
 import classnames from "classnames";
 
 type easing = "linear" | "ease" | "ease-in" | "ease-in-out" | "ease-out";
+
+type InputRefProps = {
+  next?: () => void;
+};
 interface ICarouselProps {
   autoplay?: boolean;
   easing?: easing;
   dots?: boolean; //是否显示指示点 字节点为1时不生效
   arrows?: boolean;
+  ref?: React.Ref<InputRefProps>;
 }
 interface ICarouselItemProps {
   className?: string;
 }
 
-const Carousel: React.FC<ICarouselProps> = (props) => {
+// eslint-disable-next-line react/display-name
+const Carousel: React.FC<ICarouselProps> = React.forwardRef<
+  InputRefProps,
+  ICarouselProps
+>((props, ref) => {
   const {
     children,
     autoplay,
@@ -20,9 +30,12 @@ const Carousel: React.FC<ICarouselProps> = (props) => {
     dots = true,
     arrows = false,
   } = props;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  console.log("props===>", props);
   const [active, setActive] = useState(0);
   const activeRef = useRef(active);
+  useImperativeHandle(ref, () => ({
+    next: onNextHandle,
+  }));
 
   const renderChildren = React.Children.map(
     React.Children.map(children, (child) => child),
@@ -98,7 +111,7 @@ const Carousel: React.FC<ICarouselProps> = (props) => {
     }
   };
   const renderIndicator = () => {
-    return renderChildren?.map((indicator, index) => {
+    return renderChildren?.map((_indicator, index) => {
       return (
         <span
           className={classnames({
@@ -132,6 +145,7 @@ const Carousel: React.FC<ICarouselProps> = (props) => {
       ) : null}
     </div>
   );
-};
+});
 
 export default Carousel;
+// export default React.Ref<InputRefProps,ICarouselProps>(Carousel);

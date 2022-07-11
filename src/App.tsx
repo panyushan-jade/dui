@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import Button from "src/components/Button";
 import Alert from "src/components/Alert";
@@ -12,12 +12,24 @@ import image1 from "src/assets/image1.webp";
 import image2 from "src/assets/image2.webp";
 import image3 from "src/assets/image3.webp";
 
+type InputRefProps = {
+  next: () => void;
+};
+
 function App() {
+  const myref = useRef<InputRefProps>(null);
+  const handle = () => {
+    console.log("myref", myref);
+    if (myref && myref.current) {
+      myref.current.next();
+    }
+  };
   return (
     <div className="App" style={{ padding: 50 }}>
       <h3>Carousel</h3>
+      <button onClick={handle}>2222222</button>
       <div style={{ width: 670, border: "2px solid red" }}>
-        <Carousel autoplay>
+        <Carousel ref={myref}>
           <img src={image1} alt="image1" />
           <img src={image2} alt="image2" />
           <img src={image3} alt="image3" />
