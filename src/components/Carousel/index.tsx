@@ -4,15 +4,17 @@ import classnames from "classnames";
 
 type easing = "linear" | "ease" | "ease-in" | "ease-in-out" | "ease-out";
 
-type InputRefProps = {
+type CarouselRefProps = {
   next?: () => void;
+  prev?: () => void;
+  moveTo?: (index: number) => void;
 };
 interface ICarouselProps {
   autoplay?: boolean;
   easing?: easing;
   dots?: boolean; //是否显示指示点 字节点为1时不生效
   arrows?: boolean;
-  ref?: React.Ref<InputRefProps>;
+  ref?: React.Ref<CarouselRefProps>;
 }
 interface ICarouselItemProps {
   className?: string;
@@ -20,7 +22,7 @@ interface ICarouselItemProps {
 
 // eslint-disable-next-line react/display-name
 const Carousel: React.FC<ICarouselProps> = React.forwardRef<
-  InputRefProps,
+  CarouselRefProps,
   ICarouselProps
 >((props, ref) => {
   const {
@@ -35,6 +37,8 @@ const Carousel: React.FC<ICarouselProps> = React.forwardRef<
   const activeRef = useRef(active);
   useImperativeHandle(ref, () => ({
     next: onNextHandle,
+    prev: onPrevHandle,
+    moveTo: moveTo,
   }));
 
   const renderChildren = React.Children.map(

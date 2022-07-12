@@ -14,6 +14,8 @@ import image3 from "src/assets/image3.webp";
 
 type InputRefProps = {
   next: () => void;
+  prev: () => void;
+  moveTo: (index: number) => void;
 };
 
 function App() {
@@ -21,14 +23,14 @@ function App() {
   const handle = () => {
     console.log("myref", myref);
     if (myref && myref.current) {
-      myref.current.next();
+      myref.current.moveTo(1);
     }
   };
   return (
     <div className="App" style={{ padding: 50 }}>
       <h3>Carousel</h3>
-      <button onClick={handle}>2222222</button>
-      <div style={{ width: 670, border: "2px solid red" }}>
+      <button onClick={handle}>moveTo</button>
+      <div style={{ width: 670 }}>
         <Carousel ref={myref}>
           <img src={image1} alt="image1" />
           <img src={image2} alt="image2" />
