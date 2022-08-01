@@ -5,7 +5,7 @@ import { IMenuItemProps } from "./MenuItem";
 
 type mode = "vertical" | "horizontal";
 
-interface IBaseProps {
+export interface IBaseProps {
   // defaultOpenKeys?: string[];
   defaultSelectedKey?: string;
   onSelect?: (key: string) => void;

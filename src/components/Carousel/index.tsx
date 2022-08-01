@@ -4,19 +4,19 @@ import classnames from "classnames";
 
 type easing = "linear" | "ease" | "ease-in" | "ease-in-out" | "ease-out";
 
-type CarouselRefProps = {
+export type CarouselRefProps = {
   next?: () => void;
   prev?: () => void;
   moveTo?: (index: number) => void;
 };
-interface ICarouselProps {
+export interface ICarouselProps {
   autoplay?: boolean;
   easing?: easing;
   dots?: boolean; //是否显示指示点 字节点为1时不生效
   arrows?: boolean;
   ref?: React.Ref<CarouselRefProps>;
 }
-interface ICarouselItemProps {
+export interface ICarouselItemProps {
   className?: string;
 }
 

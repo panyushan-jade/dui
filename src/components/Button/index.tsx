@@ -5,12 +5,12 @@ import className from "classnames"; //用来拼接class  详情参考：https://
 // _xxx.scss 这里的下划线的意思是告诉 Sass 不要编译这些文件，但导入语句中却不需要添加下划线
 
 //类型别名
-type ButtonType = "default" | "primary" | "link";
-type ButtonSize = "middle" | "small" | "large";
+export type ButtonType = "default" | "primary" | "link";
+export type ButtonSize = "middle" | "small" | "large";
 
 //button 的基础属性
 //需要注意当是链接按钮时 type=link ，对应生成的是 a 标签 也可以用button模拟
-interface IBaseButtonProps {
+export interface IBaseButtonProps {
   //这里的属性最好不要和 原生属性冲突 ts会报错 eg：type -> btnType
   type?: ButtonType; // button的类型 eg：default、primary、link
   danger?: boolean;
@@ -26,7 +26,7 @@ type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>; // a标签的�
 type AllOptionalButtonprops = Partial<ButtonProps & AnchorProps>; // 这里用ts的Utility Types Partial将type都转成可选的(用户不一定把所有参数都传入)
 
 //将可选的和 IBaseButtonProps 结合成为最终的 props
-type IButtonProps = AllOptionalButtonprops & IBaseButtonProps;
+export type IButtonProps = AllOptionalButtonprops & IBaseButtonProps;
 
 const Button: React.FC<IButtonProps | IBaseButtonProps> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

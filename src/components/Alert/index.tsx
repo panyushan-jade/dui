@@ -3,7 +3,7 @@ import className from "classnames";
 
 type AlertType = "success" | "info" | "warning" | "error";
 
-interface IAlertProps {
+export interface IAlertProps {
   type?: AlertType;
   closable?: boolean;
   disabled?: boolean;
