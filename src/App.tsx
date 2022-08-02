@@ -12,6 +12,9 @@ import image1 from "src/assets/image1.webp";
 import image2 from "src/assets/image2.webp";
 import image3 from "src/assets/image3.webp";
 
+import Lottie from "lottie-react";
+import groovyWalkAnimation from "./assets/groovyWalk.json";
+
 type InputRefProps = {
   next: () => void;
   prev: () => void;
@@ -28,6 +31,11 @@ function App() {
   };
   return (
     <div className="App" style={{ padding: 50 }}>
+      <Lottie
+        style={{ width: 300 }}
+        animationData={groovyWalkAnimation}
+        loop={true}
+      />
       <h3>Carousel</h3>
       <button onClick={handle}>moveTo</button>
       <div style={{ width: 670 }}>
