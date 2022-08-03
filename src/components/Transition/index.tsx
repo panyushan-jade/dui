@@ -12,10 +12,6 @@ export type TransitionProps = CSSTransitionProps & {
   animation?: AnimationName;
   className?: string;
 };
-// interface TransitionProps extends CSSTransitionClassNames {
-//   animation?: AnimationName
-//   className?: string
-// }
 
 const Transition: React.FC<TransitionProps> = (props) => {
   const { children, className, animation, ...restProps } = props;
@@ -29,9 +25,9 @@ const Transition: React.FC<TransitionProps> = (props) => {
   );
 };
 
-// Transition.defaultProps = {
-//   unmountOnExit: true,
-//   appear: true,
-// }
+Transition.defaultProps = {
+  unmountOnExit: true,
+  appear: true,
+};
 
 export default Transition;

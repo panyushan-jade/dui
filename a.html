@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="canvas" style="border: 1px solid #aaa; display: block; margin: 50px auto;">
+    当前浏览器不支持canvas
+</canvas>
+
+<script>
+
+    window.onload = function(){
+
+        let canvas = document.getElementById("canvas");
+        canvas.width = 1980;
+        canvas.height = 1024;
+        let context = canvas.getContext("2d");
+
+        context.fillStyle = "green";
+        context.fillText("中文ABCDEFG", 500, 400);
+
+        // context.save();
+        context.translate(400, 400);
+        context.rotate(45 * Math.PI / 180);
+        context.fillStyle = "red";
+        context.fillText("中文ABCDEFG", 0, 0);
+        // context.restore();
+
+        //中心位置旋转
+        // let strWidth = context.measureText("中文ABCDEFG").width;
+        // console.log("strWidth:" + strWidth);
+        // context.save();
+        // context.translate(400 + strWidth / 2, 400 - strWidth / 2);
+        // context.rotate(90 * Math.PI / 180);
+        // context.fillStyle = "blue";
+        // context.fillText("中文ABCDEFG", 0, 0);
+        // context.restore();
+    }
+
+</script>
+
+</body>
+</html>
