@@ -1,36 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-// export interface IWaterMarkProps {
-//     text?:string
-// }
-
-export type position =
-  | "left-top"
-  | "right-top"
-  | "left-bottom"
-  | "right-bottom";
-
 interface IWaterMarkProps {
   text?: string;
   url: string;
   type?: string;
   bgColor?: string;
   quality?: number;
-  space?: [number, number];
-  position?: position;
+  density?: number;
 }
 
 const imgToWaterMark = (props: IWaterMarkProps) => {
-  const {
-    url,
-    type,
-    bgColor,
-    quality,
-    text,
-    // space,position
-  } = props;
-  console.log("props====>222", props);
-
+  const { url, type, bgColor, quality, text, density = 0.6 } = props;
   return new Promise((resolve, reject) => {
     const qualityImg = ["image/jpeg", "image/webp"];
     const image = new Image();
@@ -40,56 +20,36 @@ const imgToWaterMark = (props: IWaterMarkProps) => {
     image.onload = function () {
       // 绘制原图
       const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d", { alpha: false });
       canvas.width = image.width;
       canvas.height = image.height;
 
       ctx!.fillStyle = bgColor || "white";
       ctx!.fillRect(0, 0, canvas.width, canvas.height);
       ctx!.drawImage(image, 0, 0);
-      // 绘制水印
-      ctx!.translate(100, 100);
-      ctx!.rotate((45 * Math.PI) / 180);
 
+      // 绘制水印
       ctx!.textAlign = "center";
       ctx!.textBaseline = "middle";
       ctx!.font = "20px microsoft yahei";
       ctx!.fillStyle = "rgba(184, 184, 184, 0.8)";
-      ctx!.fillText(text || "请勿外传", 0, 0);
-      // if(space && space.length === 2){
-      // }else{
-      //     switch (position) {
-      //         case 'left-top':
-      //             console.log('11111111111');
+      const textInfo = ctx!.measureText(text || "请勿外传");
+      const space = [textInfo.width / density, 40 / density];
+      const xCount = Math.round(image.width / space[0]);
+      const yCount = Math.round(image.height / space[1]);
 
-      //             t_ctx!.fillText(text || '请勿外传', 0, 100)
-      //             break
-      //         case 'right-top':
-      //             console.log('222222222222');
-      //             t_ctx!.fillText(text || '请勿外传',image.width, 100)
-      //              break
-      //         case 'left-bottom':
-      //             console.log('3333333');
-      //             t_ctx!.fillText(text || '请勿外传', 0, image.height)
-      //             break
-      //         case 'right-bottom':
-      //             console.log('4444444444');
-      //             // ctx!.fillText(text || '请勿外传', image.width-textInf.width, image.height-50)
-      //             t_ctx!.fillText(text || '请勿外传',50, 50)
-      //             ctx!.drawImage(textCanvas, 100, 100)
-      //             break
-      //         default:
-      //             break;
-      //     }
-      // }
-
-      // ctx!.fillText(text || '请勿外传', parseFloat(String(image.width)) / 2, parseFloat(String(image.height)) / 2)
-
+      for (let x = 0; x <= xCount; x++) {
+        for (let y = 0; y <= yCount; y++) {
+          ctx?.save();
+          ctx!.translate(space[0] * x, space[1] * y);
+          ctx!.rotate((45 * Math.PI) / 180);
+          ctx!.fillText(text || "请勿外传", 0, 0);
+          ctx?.restore();
+        }
+      }
       const result = qualityImg.includes(type as string)
         ? canvas.toDataURL(type, quality || 0.96)
         : canvas.toDataURL(type);
-      // console.log('result===>',result);
-
       resolve(result);
     };
     // 图片加载失败的错误处理
@@ -100,16 +60,12 @@ const imgToWaterMark = (props: IWaterMarkProps) => {
 };
 
 const WaterMark: React.FC<IWaterMarkProps> = (props) => {
-  //   const { url } = props;
   const [waterImg, setWaterImg] = useState("");
   useEffect(() => {
     imgToWaterMark({
       text: "请勿外传",
-      position: "right-bottom",
       ...props,
     }).then((res) => {
-      // console.log('res',res);
-
       setWaterImg(res as string);
     });
   }, []);
