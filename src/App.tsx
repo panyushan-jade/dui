@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import Button from "src/components/Button";
 import Alert from "src/components/Alert";
@@ -7,10 +7,17 @@ import Menu from "src/components/Menu/Menu";
 import MenuItem from "src/components/Menu/MenuItem";
 import SubMenu from "src/components/Menu/SubMenu";
 import Carousel from "src/components/Carousel";
+import InfiniteScroll from "src/components/InfiniteScroll";
 
 import image1 from "src/assets/image1.webp";
 import image2 from "src/assets/image2.webp";
 import image3 from "src/assets/image3.webp";
+import test from "src/assets/test.png";
+
+// import Lottie from "lottie-react";
+// import groovyWalkAnimation from "./assets/data.json";
+
+import WaterMark from "./components/WaterMark";
 
 type InputRefProps = {
   next: () => void;
@@ -20,14 +27,53 @@ type InputRefProps = {
 
 function App() {
   const myref = useRef<InputRefProps>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [state, setState] = useState({
+    data: Array.from({ length: 20 }),
+  });
+  const countRef = useRef(20);
   const handle = () => {
     console.log("myref", myref);
     if (myref && myref.current) {
       myref.current.moveTo(1);
     }
   };
+
+  const next = () => {
+    // const len = state.data.length
+    // console.log('len===>',len);
+
+    setState({
+      data: Array.from({ length: countRef.current + 20 }),
+    });
+    countRef.current += 20;
+  };
+
   return (
     <div className="App" style={{ padding: 50 }}>
+      <h3>InfiniteScroll</h3>
+      <div id="pys" style={{ height: 300, overflow: "auto" }}>
+        <InfiniteScroll
+          scrollableTarget="pys"
+          hasMore={true}
+          dataLength={20}
+          next={next}
+        >
+          <ul>
+            {state.data.map((item, index) => {
+              return <li key={index}>{index}</li>;
+            })}
+          </ul>
+        </InfiniteScroll>
+      </div>
+      <h3>WaterMark</h3>
+      <WaterMark url={image3} density={0.4} />
+      <WaterMark url={test} density={0.4} />
+      {/* <Lottie
+        style={{ width: 300 }}
+        animationData={groovyWalkAnimation}
+        loop={true}
+      /> */}
       <h3>Carousel</h3>
       <button onClick={handle}>moveTo</button>
       <div style={{ width: 670 }}>

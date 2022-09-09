@@ -21,6 +21,7 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": [2], //禁止出现未使用的变量
     "no-var": 2,
     "arrow-spacing": [2, { before: true, after: true }], //箭头函数前后空格
+    "@typescript-eslint/no-non-null-assertion": "off", //非空断言
     // "comma-dangle": [2, "never"],  // 禁止对象最后一项是逗号
   },
   settings: {

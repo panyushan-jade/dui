@@ -32,7 +32,7 @@ const Carousel: React.FC<ICarouselProps> = React.forwardRef<
     dots = true,
     arrows = false,
   } = props;
-  console.log("props===>", props);
+  // console.log("props===>", props);
   const [active, setActive] = useState(0);
   const activeRef = useRef(active);
   useImperativeHandle(ref, () => ({
@@ -64,7 +64,7 @@ const Carousel: React.FC<ICarouselProps> = React.forwardRef<
   }, []);
 
   const classes = classnames("dui-carousel");
-  console.log("hihihi", React.Children.count(children));
+  // console.log("hihihi", React.Children.count(children));
   const moveTo = (index: number) => {
     const element = document.querySelector(
       ".dui-carousel-container"

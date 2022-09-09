@@ -15,5 +15,6 @@ module.exports = {
     "function-no-unknown": null,
     "scss/double-slash-comment-whitespace-inside": null,
     "no-descending-specificity": null,
+    "max-line-length": null,
   },
 };
