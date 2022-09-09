@@ -25,10 +25,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "preinstall": "npx npm-limit yarn",
     "prepare": "npx husky install",
+    "preinstall": "npx only-allow yarn",
     "lint:stylelint": "stylelint src/**/*.{css,scss} --fix --custom-syntax postcss-scss",
-    "lint:eslint": "eslint --fix --ext .js,.jsx,.ts,.tsx"
+    "lint:eslint": "eslint --fix --ext .js,.jsx,.ts,.tsx",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "browserslist": {
     "production": [
@@ -64,9 +66,20 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack5": "^6.5.10",
+    "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/node-logger": "^6.5.10",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
     "@types/react-dom": "^18.0.2",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "commitizen": "^4.2.4",
     "commitlint-config-cz": "^0.13.3",
     "cz-customizable": "^6.3.0",
@@ -77,9 +90,23 @@
     "lint-staged": "^12.3.8",
     "postcss-scss": "^4.0.3",
     "prettier": "^2.6.2",
+    "prop-types": "^15.8.1",
     "stylelint": "^14.6.1",
     "stylelint-config-standard": "^25.0.0",
     "stylelint-config-standard-scss": "^3.0.0",
-    "stylelint-scss": "^4.2.0"
+    "stylelint-scss": "^4.2.0",
+    "webpack": "^5.74.0"
+  },
+  "eslintConfig": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   }
 }
