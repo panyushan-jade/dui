@@ -14,6 +14,7 @@ export interface IBaseButtonProps {
   //这里的属性最好不要和 原生属性冲突 ts会报错 eg：type -> btnType
   type?: ButtonType; // button的类型 eg：default、primary、link
   danger?: boolean;
+  /**设置button尺寸 */
   size?: ButtonSize; // button的大小 eg: middle、small、large
   disabled?: boolean; // button 的禁用状态 at: a标签是没有disable的属性的
   className?: string;
@@ -28,6 +29,14 @@ type AllOptionalButtonprops = Partial<ButtonProps & AnchorProps>; // 这里用ts
 //将可选的和 IBaseButtonProps 结合成为最终的 props
 export type IButtonProps = AllOptionalButtonprops & IBaseButtonProps;
 
+/**
+ * 页面中最常用的的按钮元素，适合于完成特定的交互
+ * ### 引用方法
+ *
+ * ~~~js
+ * import { Button } from 'vikingship'
+ * ~~~
+ */
 const Button: React.FC<IButtonProps | IBaseButtonProps> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {
@@ -63,9 +72,10 @@ const Button: React.FC<IButtonProps | IBaseButtonProps> = (props) => {
     );
   }
 };
-// Button.defaultProps = {
-//   type: "default",
-//   size: "middle"
-// };
+
+Button.defaultProps = {
+  type: "default",
+  size: "middle",
+};
 
 export default Button;

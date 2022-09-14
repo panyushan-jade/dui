@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@storybook/addon-info": "^5.3.21",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -11,6 +12,7 @@
     "@types/react": "^17.0.44",
     "@types/react-transition-group": "^4.4.5",
     "@types/sass": "^1.43.1",
+    "@types/storybook__addon-info": "^5.2.5",
     "classnames": "^2.3.1",
     "husky": "^7.0.4",
     "lottie-react": "^2.3.1",
