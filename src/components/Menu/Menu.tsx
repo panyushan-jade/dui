@@ -7,8 +7,11 @@ type mode = "vertical" | "horizontal";
 
 export interface IBaseProps {
   // defaultOpenKeys?: string[];
+  /**默认选中的menu */
   defaultSelectedKey?: string;
+  /**选中时的回调函数 */
   onSelect?: (key: string) => void;
+  /**menu模式 */
   mode?: mode;
 }
 export interface IMenuProps extends IBaseProps {
@@ -25,6 +28,14 @@ interface IMenuContext {
 
 export const menuContext = createContext<IMenuContext>({});
 
+/**
+ * 为页面和功能提供导航的菜单列表
+ * ### 引用方法
+ *
+ * ~~~js
+ * import { Menu } from 'dui'
+ * ~~~
+ */
 const Menu: React.FC<IMenuProps> = (props) => {
   const { className, style, children, mode, defaultSelectedKey, onSelect } =
     props;

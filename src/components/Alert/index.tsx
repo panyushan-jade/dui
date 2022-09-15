@@ -4,17 +4,31 @@ import className from "classnames";
 type AlertType = "success" | "info" | "warning" | "error";
 
 export interface IAlertProps {
+  /**alert类型 */
   type?: AlertType;
   closable?: boolean;
+  /**是否禁用 */
   disabled?: boolean;
   className?: string;
+  /**alert文案 */
   message?: ReactNode; // 内容
+  /**alert相关描述 */
   description?: ReactNode; //相关描述
   style?: React.CSSProperties;
+  /**alert关闭节点 */
   closeText?: React.ReactNode;
+  /**alert关闭回调 */
   onClose?: () => void;
 }
 
+/**
+ * 警告提示，展现需要关注的信息
+ * ### 引用方法
+ *
+ * ~~~js
+ * import { Alert } from 'dui'
+ * ~~~
+ */
 const Alert: React.FC<IAlertProps> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {

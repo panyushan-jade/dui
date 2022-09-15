@@ -12,10 +12,12 @@ export type ButtonSize = "middle" | "small" | "large";
 //需要注意当是链接按钮时 type=link ，对应生成的是 a 标签 也可以用button模拟
 export interface IBaseButtonProps {
   //这里的属性最好不要和 原生属性冲突 ts会报错 eg：type -> btnType
+  /**设置button类型 */
   type?: ButtonType; // button的类型 eg：default、primary、link
   danger?: boolean;
   /**设置button尺寸 */
   size?: ButtonSize; // button的大小 eg: middle、small、large
+  /**是否禁用 */
   disabled?: boolean; // button 的禁用状态 at: a标签是没有disable的属性的
   className?: string;
   children: React.ReactNode; // 用来渲染组件中的内容
@@ -34,7 +36,7 @@ export type IButtonProps = AllOptionalButtonprops & IBaseButtonProps;
  * ### 引用方法
  *
  * ~~~js
- * import { Button } from 'vikingship'
+ * import { Button } from 'dui'
  * ~~~
  */
 const Button: React.FC<IButtonProps | IBaseButtonProps> = (props) => {

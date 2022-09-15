@@ -44,13 +44,13 @@ const defaultButton = () => (
   <Button onClick={action("clicked")}> default button </Button>
 );
 
-const buttonWithSize = () => <Button size="small"> small button </Button>;
-// const buttonWithSize = () => (
-//     <>
-//         <Button size='small'> small button </Button>
-//         <Button size='large'> large button </Button>
-//     </>
-// )
+// const buttonWithSize = () => <Button size="small"> small button </Button>;
+const buttonWithSize = () => (
+  <>
+    <Button size="small"> small button </Button>
+    <Button size="large"> large button </Button>
+  </>
+);
 
 const buttonWithType = () => (
   <>
@@ -60,7 +60,7 @@ const buttonWithType = () => (
   </>
 );
 
-storiesOf("Button Component", module)
+storiesOf("Button按钮", module)
   // .addDecorator(withInfo)
   // .addParameters({
   //     info:{

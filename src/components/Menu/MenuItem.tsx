@@ -7,6 +7,7 @@ export interface IMenuItemProps {
   className?: string;
   eventKey?: string;
   index?: string;
+  /**是否禁用 */
   disabled?: boolean;
 }
 
