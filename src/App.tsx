@@ -77,7 +77,7 @@ function App() {
       <h3>Carousel</h3>
       <button onClick={handle}>moveTo</button>
       <div style={{ width: 670 }}>
-        <Carousel ref={myref}>
+        <Carousel ref={myref} arrows>
           <img src={image1} alt="image1" />
           <img src={image2} alt="image2" />
           <img src={image3} alt="image3" />

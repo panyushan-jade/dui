@@ -5,14 +5,18 @@ import classnames from "classnames";
 type easing = "linear" | "ease" | "ease-in" | "ease-in-out" | "ease-out";
 
 export type CarouselRefProps = {
-  next?: () => void;
-  prev?: () => void;
-  moveTo?: (index: number) => void;
+  next: () => void;
+  prev: () => void;
+  moveTo: (index: number) => void;
 };
 export interface ICarouselProps {
+  /**是否自动播放 */
   autoplay?: boolean;
+  /**播放速率 */
   easing?: easing;
-  dots?: boolean; //是否显示指示点 字节点为1时不生效
+  /**是否显示指示点 子节点为1时不生效 */
+  dots?: boolean;
+  /**是否显示左右箭头 */
   arrows?: boolean;
   ref?: React.Ref<CarouselRefProps>;
 }
