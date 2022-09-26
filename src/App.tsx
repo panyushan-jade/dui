@@ -8,6 +8,7 @@ import MenuItem from "src/components/Menu/MenuItem";
 import SubMenu from "src/components/Menu/SubMenu";
 import Carousel from "src/components/Carousel";
 import InfiniteScroll from "src/components/InfiniteScroll";
+import IconFont from "src/components/IconFont";
 
 import image1 from "src/assets/image1.webp";
 import image2 from "src/assets/image2.webp";
@@ -51,6 +52,11 @@ function App() {
 
   return (
     <div className="App" style={{ padding: 50 }}>
+      <h3>IconFont</h3>
+      <div>
+        <IconFont type="icon-closefill" />
+      </div>
+
       <h3>InfiniteScroll</h3>
       <div id="pys" style={{ height: 300, overflow: "auto" }}>
         <InfiniteScroll
