@@ -245,11 +245,11 @@ $input-border-radius-sm: $border-radius-sm !default;
 $input-focus-bg: $input-bg !default;
 /* stylelint-disable-next-line function-no-unknown */
 $input-focus-border-color: lighten($primary, 25%) !default;
-$input-focus-width: 0.2rem !default;
+$input-focus-width: 0.1rem !default;
 $input-focus-color: $input-color !default;
 $input-focus-shadow-color: rgba($primary, 0.25) !default;
 $input-focus-box-shadow: 0 0 0 $input-focus-width $input-focus-shadow-color !default;
-$input-placeholder-color: $gray-600 !default;
+$input-placeholder-color: $gray-400 !default;
 $input-plaintext-color: $body-color !default;
 $input-height-border: $input-border-width * 2 !default;
 

@@ -3,10 +3,11 @@ import React, {
   ReactElement,
   InputHTMLAttributes,
   ChangeEvent,
+  useState,
+  useRef,
 } from "react";
 import classNames from "classnames";
-// import { IconProp } from '@fortawesome/fontawesome-svg-core'
-// import Icon from '../Icon/icon'
+import IconFont from "src/components/IconFont";
 
 type InputSize = "lg" | "sm";
 export interface InputProps
@@ -16,11 +17,13 @@ export interface InputProps
   /**设置 input 大小，支持 lg 或者是 sm */
   size?: InputSize;
   /**添加图标，在右侧悬浮添加一个图标，用于提示 */
-  //   icon?: IconProp;
+  icon?: React.ReactNode;
   /**添加前缀 用于配置一些固定组合 */
   prepend?: string | ReactElement;
   /**添加后缀 用于配置一些固定组合 */
   append?: string | ReactElement;
+  /**是否允许清楚 */
+  allowClear?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -29,21 +32,15 @@ export interface InputProps
  *
  * ~~~js
  * // 这样引用
- * import { Input } from 'vikingship'
+ * import { Input } from 'dui'
  * ~~~
  * 支持 HTMLInput 的所有基本属性
  */
 export const Input: FC<InputProps> = (props) => {
-  const {
-    disabled,
-    size,
-    // icon,
-    prepend,
-    append,
-    style,
-    ...restProps
-  } = props;
-  const cnames = classNames("viking-input-wrapper", {
+  const { disabled, size, icon, prepend, append, style, ...restProps } = props;
+  const [value, setValue] = useState<any>(restProps.value || "");
+  const eRef: any = useRef("");
+  const cnames = classNames("dui-input-wrapper", {
     [`input-size-${size}`]: size,
     "is-disabled": disabled,
     "input-group": prepend || append,
@@ -60,18 +57,46 @@ export const Input: FC<InputProps> = (props) => {
     delete restProps.defaultValue;
     restProps.value = fixControlledValue(props.value);
   }
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("dsadasd");
+
+    setValue(e.target.value);
+    eRef.current = e;
+    props?.onChange && props?.onChange(e);
+  };
+  const clearHandle = () => {
+    setValue("");
+    console.log("eRef===>", eRef);
+    eRef.current.target.value = "";
+    props?.onChange && props?.onChange(eRef.current);
+  };
+
   return (
     <div className={cnames} style={style}>
-      {prepend && <div className="viking-input-group-prepend">{prepend}</div>}
-      {/* {icon && <div className="icon-wrapper"><Icon icon={icon} title={`title-${icon}`}/></div>} */}
+      {prepend && <div className="dui-input-group-prepend">{prepend}</div>}
+      {icon ? (
+        <div className="icon-wrapper">{icon}</div>
+      ) : value ? (
+        <div className="icon-wrapper" onClick={clearHandle}>
+          <IconFont type="icon-closefill" />
+        </div>
+      ) : null}
       <input
-        className="viking-input-inner"
+        className="dui-input-inner"
         disabled={disabled}
+        placeholder="请输入"
         {...restProps}
+        value={value}
+        onChange={onChange}
       />
-      {append && <div className="viking-input-group-append">{append}</div>}
+      {append && <div className="dui-input-group-append">{append}</div>}
     </div>
   );
+};
+
+Input.defaultProps = {
+  allowClear: false,
 };
 
 export default Input;

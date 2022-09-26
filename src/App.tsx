@@ -9,6 +9,7 @@ import SubMenu from "src/components/Menu/SubMenu";
 import Carousel from "src/components/Carousel";
 import InfiniteScroll from "src/components/InfiniteScroll";
 import IconFont from "src/components/IconFont";
+import Input from "src/components/Input";
 
 import image1 from "src/assets/image1.webp";
 import image2 from "src/assets/image2.webp";
@@ -50,8 +51,16 @@ function App() {
     countRef.current += 20;
   };
 
+  const onChange = (e: any) => {
+    console.log("app-e: ", e.target.value);
+  };
+
   return (
     <div className="App" style={{ padding: 50 }}>
+      <h3>Input</h3>
+      <div style={{ width: 200 }}>
+        <Input onChange={onChange} />
+      </div>
       <h3>IconFont</h3>
       <div>
         <IconFont type="icon-closefill" />
