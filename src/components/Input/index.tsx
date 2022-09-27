@@ -7,7 +7,7 @@ import React, {
   useRef,
 } from "react";
 import classNames from "classnames";
-import IconFont from "src/components/IconFont";
+import IconFont from "../IconFont/index";
 
 type InputSize = "lg" | "sm";
 export interface InputProps
@@ -37,7 +37,16 @@ export interface InputProps
  * 支持 HTMLInput 的所有基本属性
  */
 export const Input: FC<InputProps> = (props) => {
-  const { disabled, size, icon, prepend, append, style, ...restProps } = props;
+  const {
+    disabled,
+    size,
+    icon,
+    prepend,
+    append,
+    style,
+    allowClear,
+    ...restProps
+  } = props;
   const [value, setValue] = useState<any>(restProps.value || "");
   const eRef: any = useRef("");
   const cnames = classNames("dui-input-wrapper", {
@@ -77,7 +86,7 @@ export const Input: FC<InputProps> = (props) => {
       {prepend && <div className="dui-input-group-prepend">{prepend}</div>}
       {icon ? (
         <div className="icon-wrapper">{icon}</div>
-      ) : value ? (
+      ) : value && allowClear ? (
         <div className="icon-wrapper" onClick={clearHandle}>
           <IconFont type="icon-closefill" />
         </div>
