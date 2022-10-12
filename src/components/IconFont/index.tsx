@@ -6,6 +6,8 @@ import React, { FC } from "react";
 export interface IconFontProps extends React.SVGAttributes<HTMLOrSVGElement> {
   /**图标类型 */
   type: string;
+  /**是否旋转 */
+  spin?: boolean;
   /**图标颜色 */
   color?: string;
 }
@@ -15,7 +17,7 @@ function createScript() {
   if (isExistDom) return;
   const script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = "//at.alicdn.com/t/c/font_3672057_7fw3r6xuagx.js";
+  script.src = "//at.alicdn.com/t/c/font_3672057_chhcwac1ik.js";
   script.id = "dui-iconfont";
   document.body.appendChild(script);
 }
@@ -30,20 +32,23 @@ function createScript() {
  * ~~~
  */
 const IconFont: FC<IconFontProps> = (props) => {
-  const { type, color, ...restProps } = props;
+  const { type, color, spin = false, ...restProps } = props;
   createScript();
 
   return (
+    // <div className={ spin ? "dui-icon-spin" : ''}>
     <svg
       width="1em"
       height="1em"
       fill={color || "currentColor"}
       aria-hidden="true"
       focusable="false"
+      className={spin ? "dui-icon-spin" : ""}
       {...restProps}
     >
       <use xlinkHref={`#${type}`}></use>
     </svg>
+    // {/* </div> */}
   );
 };
 

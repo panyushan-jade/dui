@@ -5,6 +5,7 @@ import React, {
   ChangeEvent,
   useState,
   useRef,
+  useEffect,
 } from "react";
 import classNames from "classnames";
 import IconFont from "../IconFont/index";
@@ -66,6 +67,10 @@ export const Input: FC<InputProps> = (props) => {
     delete restProps.defaultValue;
     restProps.value = fixControlledValue(props.value);
   }
+
+  useEffect(() => {
+    setValue(restProps.value);
+  }, [restProps.value]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log("dsadasd");

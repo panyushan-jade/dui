@@ -29,4 +29,8 @@ const IconFontComp = () => (
   </div>
 );
 
-storiesOf("Icon图标", module).add("IconFont", IconFontComp);
+const SpinIconFont = () => <IconFont type="icon-loading" spin />;
+
+storiesOf("Icon图标", module)
+  .add("IconFont", IconFontComp)
+  .add("旋转Icon", SpinIconFont);
