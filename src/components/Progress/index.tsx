@@ -1,5 +1,5 @@
 import React from "react";
-import "./_style.scss";
+// import "./_style.scss";
 
 interface PropsType {
   type?: string; //进度条类型  默认线形，circle圆环

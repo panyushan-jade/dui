@@ -33,6 +33,7 @@ function App() {
   const [state, setState] = useState({
     data: Array.from({ length: 20 }),
   });
+  const [value, setValue] = useState(0);
   const countRef = useRef(20);
   const handle = () => {
     console.log("myref", myref);
@@ -124,7 +125,17 @@ function App() {
       <h3>Button</h3>
       <Button type="link">我是link</Button>
       <Button>我是default</Button>
-      <Button type="primary">我是primary</Button>
+      <Button
+        type="primary"
+        onClick={() => {
+          setValue((pre: any) => {
+            console.log("pre: ", pre);
+            return pre + 10;
+          });
+        }}
+      >
+        我是primary
+      </Button>
       <Button danger>我是primary danger</Button>
       <Button size="large">我是large</Button>
       <Button size="small">我是small</Button>
@@ -175,6 +186,7 @@ function App() {
         radius={100}
         style={{ height: 10, width: 500 }}
       ></Progress>
+      <Progress RingWidth={5} value={value}></Progress>
     </div>
   );
 }
