@@ -20,6 +20,7 @@ export interface IBaseButtonProps {
   /**是否禁用 */
   disabled?: boolean; // button 的禁用状态 at: a标签是没有disable的属性的
   className?: string;
+  style?: React.CSSProperties;
   onClick?: () => void;
   children: React.ReactNode; // 用来渲染组件中的内容
 }

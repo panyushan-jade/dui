@@ -1,7 +1,9 @@
-import React, { FC, useRef, ChangeEvent, useState } from "react";
+import React, { FC, useRef, ChangeEvent, useState, CSSProperties } from "react";
 import axios from "axios";
 import UploadList from "./UploadList";
-// import Dragger from './dragger'
+import Dragger from "./dragger";
+import Button from "../Button/index";
+import Icon from "../IconFont/index";
 export type UploadFileStatus = "ready" | "uploading" | "success" | "error";
 export interface UploadFile {
   uid: string;
@@ -29,6 +31,7 @@ export interface UploadProps {
   accept?: string;
   multiple?: boolean;
   drag?: boolean;
+  style?: CSSProperties;
 }
 
 export const Upload: FC<UploadProps> = (props) => {
@@ -48,7 +51,8 @@ export const Upload: FC<UploadProps> = (props) => {
     accept,
     multiple,
     children,
-    // drag,
+    drag,
+    ...resetsProps
   } = props;
   const fileInput = useRef<HTMLInputElement>(null);
   const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || []);
@@ -167,19 +171,31 @@ export const Upload: FC<UploadProps> = (props) => {
   };
 
   return (
-    <div className="dui-upload-component">
+    <div className="dui-upload-component" {...resetsProps}>
       <div
         className="dui-upload-input"
         style={{ display: "inline-block" }}
         onClick={handleClick}
       >
-        {/* {drag ? 
-            <Dragger onFile={(files) => {uploadFiles(files)}}>
-              {children}
-            </Dragger>:
-            children
-          } */}
-        {children}
+        {drag ? (
+          <Dragger
+            onFile={(files) => {
+              uploadFiles(files);
+            }}
+          >
+            {children}
+          </Dragger>
+        ) : children ? (
+          children
+        ) : (
+          <Button
+            type="primary"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <Icon type="icon-plus" />
+            上传
+          </Button>
+        )}
         <input
           className="dui-file-input"
           style={{ display: "none" }}

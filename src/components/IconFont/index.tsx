@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { CSSProperties, FC } from "react";
 //   import classNames from "classnames";
 
 // type IconFontType = "icon-closefill";
@@ -10,6 +10,7 @@ export interface IconFontProps extends React.SVGAttributes<HTMLOrSVGElement> {
   spin?: boolean;
   /**图标颜色 */
   color?: string;
+  style?: CSSProperties;
 }
 
 function createScript() {
@@ -17,7 +18,7 @@ function createScript() {
   if (isExistDom) return;
   const script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = "//at.alicdn.com/t/c/font_3672057_chhcwac1ik.js";
+  script.src = "//at.alicdn.com/t/c/font_3672057_r0245a1xm1.js";
   script.id = "dui-iconfont";
   document.body.appendChild(script);
 }
