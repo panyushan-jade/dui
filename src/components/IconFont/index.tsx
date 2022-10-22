@@ -29,7 +29,7 @@ function createScript() {
  * 通过 iconfont.cn 链接方式生成icon
  *
  * ~~~js
- * import { IconFont } from 'vikingship'
+ * import { Icon } from 'dui'
  * ~~~
  */
 const IconFont: FC<IconFontProps> = (props) => {
@@ -37,7 +37,6 @@ const IconFont: FC<IconFontProps> = (props) => {
   createScript();
 
   return (
-    // <div className={ spin ? "dui-icon-spin" : ''}>
     <svg
       width="1em"
       height="1em"
@@ -49,7 +48,6 @@ const IconFont: FC<IconFontProps> = (props) => {
     >
       <use xlinkHref={`#${type}`}></use>
     </svg>
-    // {/* </div> */}
   );
 };
 

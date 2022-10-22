@@ -183,7 +183,15 @@ export const Upload: FC<UploadProps> = (props) => {
               uploadFiles(files);
             }}
           >
-            {children}
+            {children ? (
+              children
+            ) : (
+              <>
+                <Icon type="icon-upload" style={{ fontSize: 100 }} />
+                <br />
+                <p>Drag file over to upload</p>
+              </>
+            )}
           </Dragger>
         ) : children ? (
           children
