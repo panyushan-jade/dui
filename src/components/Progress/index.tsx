@@ -1,7 +1,7 @@
 import React from "react";
 // import "./_style.scss";
 
-interface PropsType {
+export interface IProgressProps {
   type?: string; //进度条类型  默认线形，circle圆环
   color?: string; //进度条颜色
   value?: number; //进度值
@@ -15,7 +15,7 @@ interface PropsType {
   };
 }
 
-function Progress(props: PropsType) {
+function Progress(props: IProgressProps) {
   const {
     color = "#3683F7",
     type = "Line",
