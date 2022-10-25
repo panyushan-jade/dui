@@ -26,7 +26,7 @@ export interface IAlertProps {
  * ### 引用方法
  *
  * ~~~js
- * import { Alert } from 'dui'
+ * import { Alert } from 'jadedui'
  * ~~~
  */
 const Alert: React.FC<IAlertProps> = (props) => {

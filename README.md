@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+## Vikingship component library
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 使用 React+typescript 从零到一打造一套你自己的组件库
 
-## Available Scripts
+[![Build Status](https://travis-ci.com/vikingmute/vikingship.svg?token=mHoDqxyxXWX5BSpu8L9y&branch=master)](https://travis-ci.com/vikingmute/vikingship)
 
-In the project directory, you can run:
+jadedui 是为前端童鞋打造的一套组件库，使用 React Hooks 和 typescript
+意在让大家从零到一，由浅入深的提高自己的 React 和 typescript 水平
+不足之处也欢迎 PR
 
-### `npm start`
+<!-- 它的官网地址是[vikingship.xyz](http://vikingship.xyz) -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 安装最后已经发布的组件库来试试
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```javascript
+npm install jadedui --save
+```
 
-### `npm test`
+### 使用
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+// 加载样式
+import "jadedui/dist/index.css";
+// 引入组件
+import { Button } from "jadedui";
+```
 
-### `npm run build`
+### 课程亮点
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 🔥typescript with React Hooks
+- ⛑️ 使用 react-testing-library 完成单元测试
+- 📚 使用 storybook 本地调试和生成文档页面
+- 📚 使用 react-doc-gen 自动生成文档
+- 📦 使用 rollup 作为构建工具
+- 📦 使用第三方库扩充组件-(react-transition-group 等)
+- 🌹 样式（Sass）文件从零开始，掌握大型应用的 CSS 组织方法
+- 🎉 涉及全部流程，包括最后的 npm publish，husky 提交发布前验证，travis CI/CD 集成，发布文档站点等
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 一些本地开发命令
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+//启动本地环境
+npm run stroybook
 
-### `npm run eject`
+//build可发布静态文件
+npm run build
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+//发布到 npm
+npm run publish
+```

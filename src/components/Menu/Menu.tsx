@@ -33,7 +33,7 @@ export const menuContext = createContext<IMenuContext>({});
  * ### 引用方法
  *
  * ~~~js
- * import { Menu } from 'dui'
+ * import { Menu } from 'jadedui'
  * ~~~
  */
 const Menu: React.FC<IMenuProps> = (props) => {

@@ -38,7 +38,7 @@ export type IButtonProps = AllOptionalButtonprops & IBaseButtonProps;
  * ### 引用方法
  *
  * ~~~js
- * import { Button } from 'dui'
+ * import { Button } from 'jadedui'
  * ~~~
  */
 const Button: React.FC<IButtonProps | IBaseButtonProps> = (props) => {

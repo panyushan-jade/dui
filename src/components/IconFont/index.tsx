@@ -29,7 +29,7 @@ function createScript() {
  * 通过 iconfont.cn 链接方式生成icon
  *
  * ~~~js
- * import { Icon } from 'dui'
+ * import { Icon } from 'jadedui'
  * ~~~
  */
 const IconFont: FC<IconFontProps> = (props) => {
