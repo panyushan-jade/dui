@@ -1,11 +1,11 @@
-## Vikingship component library
+## Jadedui component library
 
 ## 使用 React+typescript 从零到一打造一套你自己的组件库
 
 [![Build Status](https://travis-ci.com/vikingmute/vikingship.svg?token=mHoDqxyxXWX5BSpu8L9y&branch=master)](https://travis-ci.com/vikingmute/vikingship)
 
 jadedui 是为前端童鞋打造的一套组件库，使用 React Hooks 和 typescript
-意在让大家从零到一，由浅入深的提高自己的 React 和 typescript 水平
+意在让大家从零到一，由浅入深的提高自己的 React 和 typescript 水平，
 不足之处也欢迎 PR
 
 <!-- 它的官网地址是[vikingship.xyz](http://vikingship.xyz) -->
@@ -25,10 +25,9 @@ import "jadedui/dist/index.css";
 import { Button } from "jadedui";
 ```
 
-### 课程亮点
+### 组件亮点
 
 - 🔥typescript with React Hooks
-- ⛑️ 使用 react-testing-library 完成单元测试
 - 📚 使用 storybook 本地调试和生成文档页面
 - 📚 使用 react-doc-gen 自动生成文档
 - 📦 使用 rollup 作为构建工具
