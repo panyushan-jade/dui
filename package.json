@@ -1,6 +1,6 @@
 {
   "name": "jadedui",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "private": false,
   "description": "React Components Library",
   "author": "Jade",
@@ -30,8 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run clean && npm run build-ts && npm run build-css",
-    "build-rollup": "npm run clean && rollup -c",
+    "build": "npm run clean && rollup -c",
     "eject": "react-scripts eject",
     "prepare": "npx husky install",
     "clean": "rimraf ./dist",
@@ -42,7 +41,7 @@
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "prepublish": "npm run lint && npm run build-rollup"
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "browserslist": {
     "production": [

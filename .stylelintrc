@@ -1,0 +1,12 @@
+{
+  "plugins": ["stylelint-scss"],
+  "extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
+  "ignoreFiles": ["**/*.js", "**/*.jsx", "**/*.tsx", "**/*.ts"],
+  "rules": {
+    "scss/no-global-function-names": null,
+    "function-no-unknown": null,
+    "scss/double-slash-comment-whitespace-inside": null,
+    "no-descending-specificity": null,
+    "max-line-length":null
+  }
+}

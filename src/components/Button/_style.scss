@@ -33,13 +33,16 @@
 }
 
 .dui-btn-default {
-  @include button-style($white, $gray-400, $body-color, $white, $primary, $primary); }
+  @include button-style($white, $gray-400, $body-color, $white, $primary, $primary);
+}
 
 .dui-btn-primary {
-  @include button-style($primary, $primary, $white); }
+  @include button-style($primary, $primary, $white);
+}
 
 .dui-btn-danger {
-  @include button-style($danger,$danger,$white); }
+  @include button-style($danger,$danger,$white);
+}
 
 .dui-btn-link {
   font-weight: $font-weight-normal;
