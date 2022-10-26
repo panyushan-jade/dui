@@ -17,7 +17,7 @@ storiesOf("Welcome page", module).add(
           <li>🌹 样式（Sass）文件从零开始，掌握大型应用的 CSS 组织方法</li>
           <li>
             🎉 涉及全部流程，包括最后的 npm publish，husky
-            提交发布前验证，travis CI/CD 集成，发布文档站点等
+            提交发布前验证，github actions CI/CD 集成，发布文档站点等
           </li>
         </ul>
 
