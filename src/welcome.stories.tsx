@@ -12,7 +12,7 @@ storiesOf("Welcome page", module).add(
           <li>🔥typescript with React Hooks</li>
           <li>📚 使用 storybook 本地调试和生成文档页面</li>
           <li>📚 使用 react-doc-gen 自动生成文档</li>
-          <li>📦 使用 rollup 作为构建工具</li>
+          <li>📦 使用 rollup 作为构建工具,构建ESmodule,支持tree-shaking</li>
           <li>📦 使用第三方库扩充组件-(react-transition-group 等)</li>
           <li>🌹 样式（Sass）文件从零开始，掌握大型应用的 CSS 组织方法</li>
           <li>

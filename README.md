@@ -30,7 +30,7 @@ import { Button } from "jadedui";
 - 🔥typescript with React Hooks
 - 📚 使用 storybook 本地调试和生成文档页面
 - 📚 使用 react-doc-gen 自动生成文档
-- 📦 使用 rollup 作为构建工具
+- 📦 使用 rollup 作为构建工具,构建 ESmodule,支持 tree-shaking
 - 📦 使用第三方库扩充组件-(react-transition-group 等)
 - 🌹 样式（Sass）文件从零开始，掌握大型应用的 CSS 组织方法
 - 🎉 涉及全部流程，包括最后的 npm publish，husky 提交发布前验证，github actions CI/CD 集成，发布文档站点等
