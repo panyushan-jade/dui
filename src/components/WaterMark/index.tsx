@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
 
 export interface IWaterMarkProps {
+  /* 水印文本 */
   text?: string;
+  /* 图片 */
   url: string;
+  /* 图片类型 jpeg、webp 支持高质量图片 */
   type?: string;
   bgColor?: string;
+  /* 图片质量 仅在jpeg、webp支持 取值0 到 1 默认0.96*/
   quality?: number;
+  /* 文字密集度 默认0.6 */
   density?: number;
+  /* 样式 */
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const imgToWaterMark = (props: IWaterMarkProps) => {
   const { url, type, bgColor, quality, text, density = 0.6 } = props;
   return new Promise((resolve, reject) => {
-    const qualityImg = ["image/jpeg", "image/webp"];
+    const qualityImg = ["jpeg", "webp"];
     const image = new Image();
     // CORS 策略，会存在跨域问题https://stackoverflow.com/questions/20424279/canvas-todataurl-securityerror
     image.setAttribute("crossOrigin", "anonymous");
@@ -48,8 +56,8 @@ const imgToWaterMark = (props: IWaterMarkProps) => {
         }
       }
       const result = qualityImg.includes(type as string)
-        ? canvas.toDataURL(type, quality || 0.96)
-        : canvas.toDataURL(type);
+        ? canvas.toDataURL("image/" + type, quality || 0.96)
+        : canvas.toDataURL("image/" + type);
       resolve(result);
     };
     // 图片加载失败的错误处理
@@ -61,6 +69,7 @@ const imgToWaterMark = (props: IWaterMarkProps) => {
 
 const WaterMark: React.FC<IWaterMarkProps> = (props) => {
   const [waterImg, setWaterImg] = useState("");
+  const { style, className } = props;
   useEffect(() => {
     imgToWaterMark({
       text: "请勿外传",
@@ -70,7 +79,9 @@ const WaterMark: React.FC<IWaterMarkProps> = (props) => {
     });
   }, []);
 
-  return <img src={waterImg} alt="waterMark" />;
+  return (
+    <img src={waterImg} alt="waterMark" style={style} className={className} />
+  );
 };
 
 export default WaterMark;

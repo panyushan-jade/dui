@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { AutoComplete } from "./autoComplete";
+import AutoComplete from "./autoComplete";
 // interface LakerPlayerProps {
 //   value: string;
 //   number: number;
