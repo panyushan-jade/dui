@@ -265,7 +265,7 @@ $progress-font-size: $font-size-base * 0.75 !default;
 $progress-bg: $gray-200 !default;
 $progress-border-radius: $border-radius !default;
 $progress-bar-color: $white !default;
-$progress-bar-transition: width 0.6s ease !default;
+$progress-bar-transition: all 0.6s ease !default;
 
 // alert
 $alert-padding-y: 0.35rem !default;

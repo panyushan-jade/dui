@@ -19,6 +19,24 @@
   justify-content: center;
   align-items: center;
 
+  svg {
+    vertical-align: middle;
+  }
+
+  .pie-bg {
+    stroke: #e1e1e1;
+    opacity: 0.3;
+  }
+
+  circle {
+    stroke-dashoffset: 0;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: all 0.2s;
+    stroke: currentcolor;
+    z-index: 2;
+  }
+
   span {
     position: absolute;
     font-size: 1em;

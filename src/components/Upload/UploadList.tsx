@@ -41,7 +41,7 @@ export const UploadList: FC<UploadListProps> = (props) => {
               />
             </span>
             {item.status === "uploading" && (
-              <Progress RingWidth={5} value={item.percent || 0} />
+              <Progress percent={item.percent || 0} />
             )}
           </li>
         );

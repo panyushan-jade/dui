@@ -18,7 +18,7 @@ function createScript() {
   if (isExistDom) return;
   const script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = "//at.alicdn.com/t/c/font_3672057_r0245a1xm1.js";
+  script.src = "//at.alicdn.com/t/c/font_3672057_5n6ugeeyibn.js";
   script.id = "dui-iconfont";
   document.body.appendChild(script);
 }
