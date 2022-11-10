@@ -1,0 +1,22 @@
+{
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "usage",  // polyfill
+          "corejs": "3.26"
+        }
+      ],
+      "@babel/preset-typescript",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+        // 解决多个地方使用相同代码导致打包重复的问题、提供polyfill  需要 安装 @babel/runtime-corejs3 提取公共helpers
+        ["@babel/plugin-transform-runtime",{
+            "corejs": 3
+        }]
+    ],
+    "ignore": [
+        "node_modules/**"
+      ]
+}
