@@ -1,18 +1,18 @@
 import React from "react";
 import classNames from "classnames";
 export interface IProgressProps {
-  /**进度条类型  默认线形，circle圆环 */
+  /** 进度条类型  默认线形，circle圆环 */
   type?: string;
-  /* 进度条颜色 */
+  /** 进度条颜色 */
   color?: string;
-  /* 进度值 */
+  /** 进度值 */
   percent?: number;
-  /* 圆环半径 */
+  /** 圆环半径 */
   radius?: number; //圆环半径
   className?: string; //进度槽类名
 }
 
-function Progress(props: IProgressProps) {
+const Progress: React.FC<IProgressProps> = (props) => {
   const { color = "#3683F7", type = "Line", radius = 60, className } = props;
   let { percent = 0 } = props;
   percent = percent > 100 ? 100 : percent < 0 ? 0 : percent;
@@ -63,5 +63,6 @@ function Progress(props: IProgressProps) {
       </div>
     );
   }
-}
-export default React.memo(Progress);
+};
+
+export default Progress;

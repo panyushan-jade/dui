@@ -21,7 +21,7 @@ export default {
       // exports: 'named', // 指定导出模式（自动、默认、命名、无）
       preserveModules: true, // 保留模块结构
       preserveModulesRoot: "src", // 将保留的模块放在根级别的此路径下
-      compact: true, // 打包后进行压缩 该选项用于压缩 Rollup 产生的额外代码( 不是自己的js代码 自己的js代码要用 rollup-plugin-babel)
+      compact: true, // 打包后进行压缩 该选项用于压缩 Rollup 产生的额外代码( 不是自己的js代码 自己的js代码要用 rollup-plugin-terser)
     },
     // { file: pkg.module, format: 'es',name:'jadedui' },
     // { file: pkg.main, format: 'umd',name:'jadedui' }

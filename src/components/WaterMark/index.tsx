@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 export interface IWaterMarkProps {
-  /* 水印文本 */
+  /** 水印文本 */
   text?: string;
-  /* 图片 */
+  /** 图片 */
   url: string;
-  /* 图片类型 jpeg、webp 支持高质量图片 */
+  /** 图片类型 jpeg、webp 支持高质量图片 */
   type?: string;
   bgColor?: string;
-  /* 图片质量 仅在jpeg、webp支持 取值0 到 1 默认0.96*/
+  /** 图片质量 仅在jpeg、webp支持 取值0 到 1 默认0.96*/
   quality?: number;
-  /* 文字密集度 默认0.6 */
+  /** 文字密集度 默认0.6 */
   density?: number;
-  /* 样式 */
+  /** 样式 */
   style?: React.CSSProperties;
   className?: string;
 }

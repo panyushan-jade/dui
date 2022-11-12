@@ -23,7 +23,7 @@ export interface InputProps
   prepend?: string | ReactElement;
   /**添加后缀 用于配置一些固定组合 */
   append?: string | ReactElement;
-  /**是否允许清楚 */
+  /**是否允许清除 */
   allowClear?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
