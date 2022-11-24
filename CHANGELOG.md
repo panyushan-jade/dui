@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/panyushan-jade/dui/compare/v1.2.0...v1.3.0) (2022-11-24)
+
+
+### Features
+
+* delete test ([131dd6e](https://github.com/panyushan-jade/dui/commit/131dd6e4f5437913e064aac8ca1f28415bf8eb76))
+
 # [1.2.0](https://github.com/panyushan-jade/dui/compare/v1.1.0...v1.2.0) (2022-11-24)
 
 
