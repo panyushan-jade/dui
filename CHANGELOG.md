@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/panyushan-jade/dui/compare/v1.0.0...v1.1.0) (2022-11-24)
+
+
+### Features
+
+* test ([ae68a3e](https://github.com/panyushan-jade/dui/commit/ae68a3eda02e50e8ec5888a013b9c8fcf0b4d661))
+
 # 1.0.0 (2022-11-24)
 
 
