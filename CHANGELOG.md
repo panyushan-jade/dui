@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/panyushan-jade/dui/compare/v1.4.0...v1.4.1) (2023-01-05)
+
+
+### Performance Improvements
+
+* 完善Divider ([0248b6f](https://github.com/panyushan-jade/dui/commit/0248b6f0b4889decd8e548469fadffa62e2079ac))
+
 # [1.4.0](https://github.com/panyushan-jade/dui/compare/v1.3.0...v1.4.0) (2022-11-24)
 
 
