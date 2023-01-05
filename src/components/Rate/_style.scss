@@ -1,0 +1,25 @@
+.dui-rate {
+  display: flex;
+
+  .dui-rate-star:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .dui-rate-star {
+    position: relative;
+
+    .dui-rate-star-first {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      opacity: 0;
+
+      // &:hover{
+      //     color: #fadb14;
+      // }
+    }
+  }
+}

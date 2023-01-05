@@ -32,7 +32,7 @@ function createScript() {
  * import { Icon } from 'jadedui'
  * ~~~
  */
-const IconFont: FC<IconFontProps> = (props) => {
+const Icon: FC<IconFontProps> = (props) => {
   const { type, color, spin = false, ...restProps } = props;
   createScript();
 
@@ -51,4 +51,4 @@ const IconFont: FC<IconFontProps> = (props) => {
   );
 };
 
-export default IconFont;
+export default Icon;
