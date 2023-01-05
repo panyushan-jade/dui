@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/panyushan-jade/dui/compare/v1.3.0...v1.4.0) (2022-11-24)
+
+
+### Features
+
+* change NPM_TOKEN ([c59b08b](https://github.com/panyushan-jade/dui/commit/c59b08b75366ebc51c0c3581460dc8d38cfe0f55))
+
 # [1.3.0](https://github.com/panyushan-jade/dui/compare/v1.2.0...v1.3.0) (2022-11-24)
 
 
