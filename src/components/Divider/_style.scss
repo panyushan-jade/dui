@@ -1,0 +1,68 @@
+.dui-divider {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+
+  &::after {
+    position: relative;
+    border-bottom: 1px solid $gray-400;
+    width: 50%;
+    content: "";
+  }
+
+  &::before {
+    position: relative;
+    border-bottom: 1px solid $gray-400;
+    width: 50%;
+    content: "";
+  }
+
+  .ant-divider-inner-text {
+    padding: 0 1em;
+    color: $black;
+    white-space: nowrap;
+    display: inline-block;
+    font-weight: 500;
+  }
+}
+
+.dui-divider-plain {
+  .ant-divider-inner-text {
+    padding: 0 1em;
+    color: unset;
+    font-weight: unset;
+  }
+}
+
+.ant-divider-with-text-left {
+  &::before {
+    width: 5%;
+  }
+
+  &::after {
+    width: 95%;
+  }
+}
+
+.ant-divider-with-text-right {
+  &::before {
+    width: 95%;
+  }
+
+  &::after {
+    width: 5%;
+  }
+}
+
+.dui-divider-vertical {
+  position: relative;
+  top: -0.06em;
+  display: inline;
+  height: 0.9em;
+  margin: 0 8px;
+  vertical-align: middle;
+  border-top: 0;
+  border-left: 1px solid rgb(0 0 0 / 6%);
+}

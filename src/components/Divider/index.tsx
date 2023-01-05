@@ -1,5 +1,4 @@
-import React from // , { ReactNode }
-"react";
+import React from "react"; // , { ReactNode }
 import className from "classnames";
 
 export type OrientationType = "left" | "right" | "center";
@@ -29,10 +28,33 @@ export interface DividerProps {
  * ~~~
  */
 const Divider: React.FC<DividerProps> = (props) => {
-  const { type = "horizontal", children } = props;
-  const classNames = className("dui-divider", `dui-divider-${type}`);
+  const { type = "horizontal", children, dashed, plain, orientation } = props;
+  const classNames = className(
+    "dui-divider",
+    `dui-divider-${type}`,
+    { [`ant-divider-with-text-${orientation}`]: type == "horizontal" },
+    { "dui-divider-dashed": dashed && type == "horizontal" },
+    { "dui-divider-plain": plain && type == "horizontal" }
+  );
 
-  return <div className={classNames}>{children}</div>;
+  if (type === "vertical" && children) {
+    console.warn("children not working in vertical mode");
+  }
+
+  return (
+    <div className={classNames}>
+      {type === "vertical" ? null : children ? (
+        <span className="ant-divider-inner-text">{children}</span>
+      ) : null}
+    </div>
+  );
+};
+
+Divider.defaultProps = {
+  plain: false,
+  orientation: "center",
+  type: "horizontal",
+  dashed: false,
 };
 
 export default Divider;
