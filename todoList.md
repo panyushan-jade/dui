@@ -4,5 +4,6 @@
 - 图片水印
   canvas、mutationObserver
 - Flip 动画思路
+- 滑动验证码
 
 <!-- "build": "npm run clean && npm run build-ts && npm run build-css", -->

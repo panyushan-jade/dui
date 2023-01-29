@@ -1,16 +1,23 @@
-import React, { useState } from "react"; // , { ReactNode }
+import React, { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import classnames from "classnames";
 import Icon from "../IconFont";
 
 export type OrientationType = "left" | "right" | "center";
 
 export interface RateProps {
-  /** 评分样式类 */
+  /** 自定义样式类名 */
   className?: string;
-  /** 评分样式对象 */
+  /** 自定义样式对象 */
   style?: React.CSSProperties;
-  /** 是否允许半选 */
-  allowHalf?: boolean;
+  /** 当前数，受控值 */
+  value?: number;
+  /** 默认值 */
+  defaultValue?: number;
+  /** 只读，无法进行交互 */
+  disabled?: boolean;
+  /** 自定义字符 */
+  character?: ReactNode | ((index: number) => ReactNode);
 }
 
 /**
@@ -24,63 +31,123 @@ export interface RateProps {
  * ~~~
  */
 const Rate: React.FC<RateProps> = (props) => {
-  const { className, allowHalf } = props;
-  console.log("allowHalf: ", allowHalf);
+  const { className, value, defaultValue, character, disabled } = props;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [ids, setIds] = useState<number[]>([0, 1, 2, 3, 4]);
+  const [rateValue, setRateValue] = useState<[number, number]>([-1, -1]);
+  // const [rateDefaultValue,setRateDefaultValue] = useState<[number,number]>([-1,-1]);
   const [pos, setPos] = useState<any>({
     curIndexLi: -1,
     curIndexStar: -1,
+    isFocus: false,
   });
-  // const [classNames,setClassNames] = useState<Record<string,any>>({
-  //   'dui-rate-star': true, // 基础类
-  //   'dui-rate-star-zero': false, // 0 星
-  //   'dui-rate-star-half': false, // 半星
-  //   'dui-rate-star-full': false, // 满星
-  //   'dui-rate-star-active': false, // 当前激活星
-  // })
+  const cls = ["ant-rate-star-half", "ant-rate-star-full"];
+  if (
+    (value && typeof value !== "number") ||
+    (defaultValue && typeof defaultValue !== "number")
+  ) {
+    throw new Error("value or defaultValue must be a number!");
+  }
+
+  const initRate = () => {
+    if (value || defaultValue) {
+      const transValue = String(value || defaultValue).split(".");
+      const curIndexLi = Number(transValue[0]);
+      const curIndexStar = transValue[1]
+        ? Number(transValue[1]) >= 5
+          ? 0
+          : -1
+        : -1;
+      console.log("curIndexLi: ", curIndexLi);
+      console.log("curIndexStar: ", curIndexStar);
+      setRateValue([curIndexLi, curIndexStar]);
+      setPos({
+        curIndexLi,
+        curIndexStar,
+        isFocus: true,
+      });
+    }
+  };
+
+  useEffect(() => {
+    initRate();
+  }, [value]);
 
   const onMouseFirstEnter = (d: number, curStar: number) => {
-    console.log("onMouseFirstEnter");
+    if (disabled) return;
     const curIndex = ids.findIndex((id) => id == d);
-    console.log("curIndex: ", curIndex, curStar);
     setPos({
+      ...pos,
       curIndexLi: curIndex,
       curIndexStar: curStar,
     });
   };
 
   const renderClassNames = (key: number) => {
-    console.log("key: ", key);
     let classNames = "dui-rate-star";
+    if (disabled) classNames += " dui-rate-star-disabled";
     if (pos.curIndexLi === -1) {
       classNames += " dui-rate-star-zero";
+    } else {
+      if (key < pos.curIndexLi) {
+        classNames += " ant-rate-star-full";
+        return classNames;
+      }
+      if (key == pos.curIndexLi) {
+        classNames += " " + cls[pos.curIndexStar];
+        return classNames;
+      }
+      if (key > pos.curIndexLi) {
+        classNames += " dui-rate-star-zero";
+      }
     }
+
     return classNames;
   };
 
+  const rateClickHandle = (type: string, key: number) => {
+    if (value || disabled) return;
+    onMouseFirstEnter(key, type === "first" ? 0 : 1);
+    setRateValue([key, type === "first" ? 0 : 1]);
+    setPos({
+      ...pos,
+      isFocus: true,
+    });
+  };
+
+  const onMouseLeave = () => {
+    if (disabled) return;
+    if (!pos.isFocus) {
+      onMouseFirstEnter(-1, -1);
+    } else {
+      onMouseFirstEnter(...rateValue);
+    }
+  };
+
+  const renderNode = (key: number) =>
+    typeof character === "function" ? character(key) : character;
+
   return (
-    <ul className={classnames("dui-rate", className)}>
+    <ul
+      className={classnames("dui-rate", className)}
+      onMouseLeave={onMouseLeave}
+    >
       {ids.map((key) => {
         return (
           <li className={renderClassNames(key)} key={key}>
             <div
               className="dui-rate-star-first"
               onMouseEnter={() => onMouseFirstEnter(key, 0)}
+              onClick={() => rateClickHandle("first", key)}
             >
-              <Icon
-                type="icon-star"
-                style={{ fontSize: 20, color: "#f0f0f0" }}
-              />
+              {renderNode(key)}
             </div>
             <div
               className="dui-rate-star-second"
               onMouseEnter={() => onMouseFirstEnter(key, 1)}
+              onClick={() => rateClickHandle("second", key)}
             >
-              <Icon
-                type="icon-star"
-                style={{ fontSize: 20, color: "#f0f0f0" }}
-              />
+              {renderNode(key)}
             </div>
           </li>
         );
@@ -89,11 +156,9 @@ const Rate: React.FC<RateProps> = (props) => {
   );
 };
 
-// Divider.defaultProps = {
-//   plain: false,
-//   orientation: "center",
-//   type: "horizontal",
-//   dashed: false,
-// };
+Rate.defaultProps = {
+  character: <Icon type="icon-star" />,
+  disabled: false,
+};
 
 export default Rate;
