@@ -18,6 +18,8 @@ export interface RateProps {
   disabled?: boolean;
   /** 自定义字符 */
   character?: ReactNode | ((index: number) => ReactNode);
+  /** 选择时的回调 */
+  onChange?: (value: number) => void;
 }
 
 /**
@@ -31,7 +33,8 @@ export interface RateProps {
  * ~~~
  */
 const Rate: React.FC<RateProps> = (props) => {
-  const { className, value, defaultValue, character, disabled } = props;
+  const { className, value, defaultValue, character, disabled, onChange } =
+    props;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [ids, setIds] = useState<number[]>([0, 1, 2, 3, 4]);
   const [rateValue, setRateValue] = useState<[number, number]>([-1, -1]);
@@ -113,6 +116,7 @@ const Rate: React.FC<RateProps> = (props) => {
       ...pos,
       isFocus: true,
     });
+    onChange && onChange(type === "first" ? key + 0.5 : key + 1);
   };
 
   const onMouseLeave = () => {

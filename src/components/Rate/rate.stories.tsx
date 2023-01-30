@@ -5,7 +5,12 @@ import { storiesOf } from "@storybook/react";
 
 import Rate from "./index";
 
-const defaultRate = () => <Rate />;
+const defaultRate = () => {
+  const onChange = (v: any) => {
+    console.log("v: ", v);
+  };
+  return <Rate onChange={onChange} />;
+};
 
 const characterRate = () => (
   <>
