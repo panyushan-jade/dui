@@ -1,3 +1,17 @@
+# [1.5.0](https://github.com/panyushan-jade/dui/compare/v1.4.1...v1.5.0) (2023-01-30)
+
+
+### Features
+
+* rate组件初步布局 ([4ef3163](https://github.com/panyushan-jade/dui/commit/4ef31630ef7f1b32d64b4bab23796e0aefdef5b3))
+
+
+### Performance Improvements
+
+* complete rate component ([ea5bbaf](https://github.com/panyushan-jade/dui/commit/ea5bbafd6d57723240f9deeb0f4cc19956c27915))
+* feat: rate组件初步布局 ([e86e6c1](https://github.com/panyushan-jade/dui/commit/e86e6c1018d8c67e2e1b71590d6f143b64d409b2))
+* 完善rate组件 90% ([01c37ed](https://github.com/panyushan-jade/dui/commit/01c37edbb9be3bfde7826cbd09a9bc728cf71d40))
+
 ## [1.4.1](https://github.com/panyushan-jade/dui/compare/v1.4.0...v1.4.1) (2023-01-05)
 
 
