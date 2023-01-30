@@ -3,33 +3,33 @@ import { storiesOf } from "@storybook/react";
 // import { action } from "@storybook/addon-actions";
 // import { withInfo } from '@storybook/addon-info'
 
-import IconFont from "./index";
+import Icon from "./index";
 
 const IconFontComp = () => (
   <div style={{ width: 500, display: "flex", justifyContent: "space-evenly" }}>
-    <IconFont type="icon-closefill" color="red" />
-    <IconFont type="icon-propertysafety-fill" color="red" />
-    <IconFont type="icon-mobile" />
-    <IconFont type="icon-folder-add" />
-    <IconFont type="icon-wifi" />
-    <IconFont type="icon-tag" />
-    <IconFont type="icon-arrowright" />
-    <IconFont type="icon-arrowup" />
-    <IconFont type="icon-arrowleft" />
-    <IconFont type="icon-arrowdown" />
-    <IconFont type="icon-YUAN" />
-    <IconFont type="icon-edit-square" />
-    <IconFont type="icon-deleteteam" />
-    <IconFont type="icon-transaction" />
-    <IconFont type="icon-folder-open-fill" />
-    <IconFont type="icon-dashboard-fill" />
-    <IconFont type="icon-customerservice-fill" />
-    <IconFont type="icon-small-dash" />
-    <IconFont type="icon-fullscreen" />
+    <Icon type="icon-closefill" color="red" />
+    <Icon type="icon-propertysafety-fill" color="red" />
+    <Icon type="icon-mobile" />
+    <Icon type="icon-folder-add" />
+    <Icon type="icon-wifi" />
+    <Icon type="icon-tag" />
+    <Icon type="icon-arrowright" />
+    <Icon type="icon-arrowup" />
+    <Icon type="icon-arrowleft" />
+    <Icon type="icon-arrowdown" />
+    <Icon type="icon-YUAN" />
+    <Icon type="icon-edit-square" />
+    <Icon type="icon-deleteteam" />
+    <Icon type="icon-transaction" />
+    <Icon type="icon-folder-open-fill" />
+    <Icon type="icon-dashboard-fill" />
+    <Icon type="icon-customerservice-fill" />
+    <Icon type="icon-small-dash" />
+    <Icon type="icon-fullscreen" />
   </div>
 );
 
-const SpinIconFont = () => <IconFont type="icon-loading" spin />;
+const SpinIconFont = () => <Icon type="icon-loading" spin />;
 
 storiesOf("Icon图标", module)
   .add("IconFont", IconFontComp)

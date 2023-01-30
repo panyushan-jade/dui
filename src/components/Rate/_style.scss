@@ -1,0 +1,72 @@
+.dui-rate {
+  display: flex;
+
+  svg {
+    color: $rate-color-default;
+    font-size: 25px;
+  }
+
+  .dui-rate-star:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  .dui-rate-star {
+    position: relative;
+    transition: all 0.2s;
+
+    .dui-rate-star-first {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      opacity: 0;
+      color: $rate-color-default;
+      font-size: 25px;
+    }
+
+    .dui-rate-star-second {
+      color: $rate-color-default;
+      font-size: 25px;
+    }
+  }
+
+  .dui-rate-star:hover {
+    transform: scale(1.1);
+  }
+
+  .dui-rate-star-disabled:hover {
+    transform: none;
+  }
+
+  .dui-rate-star.ant-rate-star-half {
+    .dui-rate-star-first {
+      opacity: 1;
+      color: $rate-color;
+
+      svg {
+        color: $rate-color;
+      }
+    }
+  }
+
+  .dui-rate-star.ant-rate-star-full {
+    .dui-rate-star-first {
+      opacity: 0;
+      color: $rate-color-default;
+
+      svg {
+        color: $rate-color-default;
+      }
+    }
+
+    .dui-rate-star-second {
+      color: $rate-color;
+
+      svg {
+        color: $rate-color;
+      }
+    }
+  }
+}
