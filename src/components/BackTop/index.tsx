@@ -1,14 +1,12 @@
-import React from "react"; // , { ReactNode }
+import React,{ useEffect,useState } from "react"; // , { ReactNode }
 import className from "classnames";
 import IconFont from "../IconFont/index";
 
 export interface BackTopProps {
   /** 回到顶部所需要的时间 */
-  duration?: string | number;
-  /** 设置需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 */
-  target?: () => HTMLElement;
+  duration?: number;
   /** 滚动高度达到此参数值才出现 BackTop */
-  visibilityHeight?: string | number;
+  visibilityHeight?: number;
   /** 点击按钮的回调函数 */
   onClick?: () => void;
   /** 自定义样式 */
@@ -27,26 +25,70 @@ export interface BackTopProps {
  * ~~~
  */
 const BackTop: React.FC<BackTopProps> = (props) => {
-  const { children } = props;
+  const { children,duration = 450,onClick,visibilityHeight = 400} = props;
   console.log('children: ', children);
-  const classNames = className("dui-back-top");
+  const [visibile,setVisibile] = useState(false)
+  const classNames = className("dui-back-top",{
+      'dui-back-top-show': visibile
+  });
+  const handleScroll = () => {
+    const top = getTopScroll()
+    if(top > visibilityHeight){
+        setVisibile(true)
+    }else{
+        setVisibile(false)
+    }
+  }
 
-//   if (type === "vertical" && children) {
-//     console.warn("children not working in vertical mode");
-//   }
+  const getTopScroll = () => {
+    return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+  }
+
+  const addScorllListener = () => window.addEventListener('scroll',handleScroll)
+
+  const removeScorllListener = () => window.removeEventListener('scroll', handleScroll)
+
+  const scrollToTop = (duration: number) => {
+    console.log('duration: ', duration);
+    const startingY = getTopScroll();
+    const diff = startingY * -1;
+    let start: any;
+    window.requestAnimationFrame(function step(timestamp) {
+        if (!start) start = timestamp;
+        const time = timestamp - start;
+        const percent = Math.min(time / duration, 1);
+        const eased = easeInOutQuad(percent);
+        window.scrollTo(0, startingY + diff * eased);
+        if (time < duration) {
+        window.requestAnimationFrame(step);
+        }
+    });
+  }
+
+  const easeInOutQuad = (t: number) => {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  }
+
+  const backTopHandle = () => {
+    onClick && onClick()
+    scrollToTop(duration)
+  }
+
+  useEffect(() => {
+    addScorllListener();
+    return removeScorllListener
+  },[])
 
   return (
-    <div className={classNames}>
-        <IconFont type="icon-vertical-align-top" />
+    <div className={classNames} onClick={backTopHandle}>
+        <IconFont style={{fontSize:25}} type="icon-vertical-align-top" />
     </div>
   );
 };
 
-// BackTop.defaultProps = {
-//   plain: false,
-//   orientation: "center",
-//   type: "horizontal",
-//   dashed: false,
-// };
+BackTop.defaultProps = {
+    duration:450,
+    visibilityHeight: 400
+};
 
 export default BackTop;

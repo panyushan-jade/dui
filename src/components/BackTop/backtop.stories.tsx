@@ -1,54 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { storiesOf } from "@storybook/react";
-import Frame from 'react-frame-component';
 import BackTop from "./index";
 
 
 const defaultBackTop = () => {
-
-    useEffect(() => {
-        const iframeDocument: any = document.querySelector('iframe')
-        
-        iframeDocument.onload = function () {
-            const div = iframeDocument.contentWindow.document
-            console.log('div: ', div);
-            console.log('div===>: ', div.getElementsByClassName('dui-back-top'));
-            div.getElementsByClassName('dui-back-top')[0].style.position = 'fixed'
-            div.getElementsByClassName('dui-back-top')[0].style.right = '100px'
-            div.getElementsByClassName('dui-back-top')[0].style.bottom = '50px'
-            div.getElementsByClassName('dui-back-top')[0].style.cursor = 'pointer'
-            div.getElementsByClassName('dui-back-top')[0].style.color = '#000000d9'
-            div.getElementsByClassName('dui-back-top')[0].style.fontSize = '14px'
-        }
-    },[])
-    return <Frame>
-            <div style={{height:400,width:600,position:'relative',overflow:'scroll'}}>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <div>Scroll to bottom</div>
-                <BackTop />
-            </div>
-        </Frame>
-};
+    return <div style={{height:'50vh'}}>
+        <div>滑动试试</div>
+        <div>滑动试试</div>
+        <BackTop />
+    </div>
+}
 
 storiesOf("BackTop 回到顶部", module)
   .add("BackTop", defaultBackTop)

@@ -2,7 +2,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: #000000d9;
+    color: #fff;
+    background-color: #8c8c8c;
     font-size: 14px;
     line-height: 1.5715;
     position: fixed;
@@ -11,5 +12,19 @@
     z-index: 10;
     width: 40px;
     height: 40px;
+    border-radius: 20px;
     cursor: pointer;
+    transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    &:hover{
+        background-color: #262626;
+    }
+}
+.dui-back-top-show{
+    visibility: visible;
+    opacity: 1;
 }
