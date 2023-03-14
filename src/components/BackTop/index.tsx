@@ -12,7 +12,8 @@ export interface BackTopProps {
   /** 自定义样式 */
   style?: React.CSSProperties;
   /** 自定义类名 */
-  className?: string
+  className?: string;
+  children?: React.ReactElement
 }
 
 /**
@@ -26,13 +27,16 @@ export interface BackTopProps {
  */
 const BackTop: React.FC<BackTopProps> = (props) => {
   const { children,duration = 450,onClick,visibilityHeight = 400} = props;
-  console.log('children: ', children);
   const [visibile,setVisibile] = useState(false)
   const classNames = className("dui-back-top",{
       'dui-back-top-show': visibile
   });
+  if( children && !React.isValidElement(children)){
+    throw new TypeError('BackTop\'s Children must be a valid element')
+  }
   const handleScroll = () => {
     const top = getTopScroll()
+    
     if(top > visibilityHeight){
         setVisibile(true)
     }else{
@@ -49,7 +53,6 @@ const BackTop: React.FC<BackTopProps> = (props) => {
   const removeScorllListener = () => window.removeEventListener('scroll', handleScroll)
 
   const scrollToTop = (duration: number) => {
-    console.log('duration: ', duration);
     const startingY = getTopScroll();
     const diff = startingY * -1;
     let start: any;
@@ -81,7 +84,7 @@ const BackTop: React.FC<BackTopProps> = (props) => {
 
   return (
     <div className={classNames} onClick={backTopHandle}>
-        <IconFont style={{fontSize:25}} type="icon-vertical-align-top" />
+      {children ? children : <IconFont style={{fontSize:25}} type="icon-vertical-align-top" />}
     </div>
   );
 };
