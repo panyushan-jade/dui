@@ -37,3 +37,6 @@ export type { UploadProps, UploadFile } from "./components/Upload";
 
 export { default as WaterMark } from "./components/WaterMark";
 export type { IWaterMarkProps } from "./components/WaterMark";
+
+export { default as BackTop } from "./components/BackTop";
+export type { BackTopProps } from "./components/BackTop";
