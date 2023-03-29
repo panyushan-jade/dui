@@ -1,0 +1,13 @@
+.dui-virtual-list{
+    width: 100%;
+    border: 2px solid;
+    overflow: auto;
+    position: relative;
+    .dui-virtual-list-phantom{
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
