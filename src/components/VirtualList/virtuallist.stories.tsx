@@ -1,12 +1,21 @@
 import React from "react";
+import faker from "faker";
 import { storiesOf } from "@storybook/react";
 import VirtualList from "./index";
 
-const VirtualListComp = () => (
-    <VirtualList data={[0, 1, 2,3,4,5,6,7,8,9,10]} height={150} itemHeight={30}>
-  {(index: any) => <div style={{border:'2px solid green',height:30}}>{index}</div>}
-</VirtualList>
-);
+const VirtualListComp = () => {
+    const data = [];
+    for (let id = 0; id < 100; id++) {
+    data.push({
+        id,
+        key:id,
+        value: faker.lorem.sentences() // 长文本
+    });
+    }
+    return <VirtualList data={[...data]} height={600} itemHeight={80} estimatedItemHeight={30}>
+    {(item,index) => <span style={{color:'red'}}>{index}、<span style={{color:'black'}}>{item.value}</span></span>}
+  </VirtualList>
+};
 
 
 storiesOf("VirtualList虚拟列表", module)
