@@ -31,16 +31,14 @@ export interface VirtualListProps {
  */
 export const VirtualList: FC<VirtualListProps> = (props) => {
   const { height = 300, children, data,itemHeight = 30,itemKey,estimatedItemHeight = 30} = props;
-  // console.log('props: ', props);
-  // console.log('itemKey: ', itemKey);
   const virListRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [originData,setOriginalData] = useState<any>([...data])
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [originData,_] = useState<any>([...data])
   const [scrollTop,setScrollTop] = useState(0);
   const [position,setPosition] = useState<Array<any>>([]);
-  const posRef = useRef<Array<any>>([])
+  const posRef = useRef<Array<any>>([]);
+  const bufferSize = 3 // 缓冲区
   if (targetType(children) !== "function") {
     throw new TypeError("VirtualList: children must be a function");
   }
@@ -57,7 +55,7 @@ export const VirtualList: FC<VirtualListProps> = (props) => {
 
   useEffect(() => {
     updatePosition()
-  },[scrollTop])
+  },[scrollTop,listRef.current])
 
 
   const binarySearch = () => {
@@ -82,19 +80,21 @@ export const VirtualList: FC<VirtualListProps> = (props) => {
     return tempIndex
   }
 
+  
+
   const listHeight = useMemo(() => props.estimatedItemHeight ? position.at(-1)?.bottom : itemHeight*originData.length, [position]) // 列表总高度
-  // const visibleCount =  Math.ceil(height / (props.estimatedItemHeight ? estimatedItemHeight : itemHeight)) // 可显示列表项数
   const visibleCount =  props.estimatedItemHeight ? useMemo(() => {
-    const count = position.findIndex( item => item.top > (height + estimatedItemHeight*3));
-    return count
-  },[scrollTop,position]) : Math.ceil(height / itemHeight) // 可显示列表项数
+    if(!position.length) return 0;
+    let count = position.findIndex( item => item.top > height);
+    count += bufferSize // 缓冲区
+    return count 
+  },[scrollTop,position]) : Math.ceil(height / itemHeight) + bufferSize // 可显示列表项数
   const startIndex = useMemo(() => {
     if(props.estimatedItemHeight) return binarySearch()
     return Math.floor(scrollTop / itemHeight)
   },[scrollTop,position]) // 列表开始索引
   const endIndex = useMemo(() => (startIndex || 0) + visibleCount,[startIndex,position])  // 列表结束索引
   const getTransform = useMemo(() => {
-    
     let offsetY = scrollTop - (scrollTop % itemHeight)
     if(props.estimatedItemHeight){
       offsetY = startIndex ? posRef.current[startIndex - 1].bottom : 0
@@ -102,15 +102,8 @@ export const VirtualList: FC<VirtualListProps> = (props) => {
     return `translate3d(0,${offsetY}px,0)`
   },[scrollTop,position])  // 列表offset
   const truthData = useMemo(() => originData.slice(startIndex, Math.min(endIndex,originData.length)),[startIndex,position])  // 渲染真实列表数据
-  // const truthData = useMemo(() => originData.slice(startIndex, Math.min(endIndex+1,originData.length)),[startIndex])  // 渲染真实列表数据
-  console.log('visibleCount======>',visibleCount);
-  console.log('startIndex======>',startIndex);
-  console.log('endIndex======>',endIndex);
   
   
-
-
-
   const initPosition = () => {
     const data = []
     for (let i = 0; i < originData.length; i++) {
@@ -125,7 +118,7 @@ export const VirtualList: FC<VirtualListProps> = (props) => {
   }
 
   const updatePosition = () => {
-    const nodes = listRef.current?.children 
+    const nodes = listRef.current?.children;
     if(!nodes) return [];
     const pos = [...posRef.current as Array<any>]
     for (let i = 0; i < nodes.length; i++) {
@@ -158,8 +151,8 @@ export const VirtualList: FC<VirtualListProps> = (props) => {
       <div className="dui-virtual-list-phantom" style={{ height:listHeight }}></div>
       <div ref={listRef} className="dui-virtual-list-container" style={{transform:getTransform,height}}>
         {truthData.map((item: any,index: number) => {
-          return <div key={item.index} id={itemKey || item.id || index} style={{border:'1px solid green'}}>{children(item,itemKey || item.id || index)}</div>
-          // return children(od,index)
+          const unionKey = itemKey || item.id || index
+          return <div key={unionKey} id={unionKey} style={{height:props.estimatedItemHeight ? '' : itemHeight}}>{children(item,index)}</div>
         })}
       </div>
       
