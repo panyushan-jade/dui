@@ -40,3 +40,6 @@ export type { IWaterMarkProps } from "./components/WaterMark";
 
 export { default as BackTop } from "./components/BackTop";
 export type { BackTopProps } from "./components/BackTop";
+
+export { default as Space } from "./components/Space";
+export type { SpaceProps } from "./components/Space";
