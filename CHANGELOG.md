@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/panyushan-jade/dui/compare/v1.5.0...v1.6.0) (2023-05-24)
+
+
+### Features
+
+* 初始化Space组件 ([d43566f](https://github.com/panyushan-jade/dui/commit/d43566f9d59b7fd7248a753e0f46d90efb833f64))
+* 完善Space组件 ([f91efca](https://github.com/panyushan-jade/dui/commit/f91efcaeee4a4822412c64a2d16cf062edd71aa9))
+
 # [1.5.0](https://github.com/panyushan-jade/dui/compare/v1.4.1...v1.5.0) (2023-01-30)
 
 
