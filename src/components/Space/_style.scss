@@ -1,3 +1,13 @@
 .dui-space {
-  color: red;
+  display: inline-flex;
+}
+
+@each $dir in start, end, center,baseline {
+  .dui-space-align-#{$dir} {
+    align-items: $dir;
+  }
+}
+
+.dui-space-vertical {
+  flex-direction: column;
 }

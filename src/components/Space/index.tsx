@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children, Fragment } from "react";
 import className from "classnames";
 
 export type SpaceDir = "vertical" | "horizontal";
@@ -16,6 +16,7 @@ export interface SpaceProps {
   split?: React.ReactNode;
   /**是否自动换行，仅在 horizontal 时有效 */
   wrap?: boolean;
+  style?: React.CSSProperties;
   children: React.ReactNode;
 }
 
@@ -28,24 +29,52 @@ export interface SpaceProps {
  * ~~~
  */
 const Space: React.FC<SpaceProps> = (props) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { size = "middle", children, ...restprops } = props;
-
-  //如果是link类型就生成a标签
+  const {
+    size = "small",
+    wrap,
+    split,
+    align,
+    direction,
+    children,
+    style,
+  } = props;
   const classNames = className(
-    // cusClassname,
-    "dui-btn",
-    { [`dui-btn-${size}`]: true }
+    "dui-space",
+    { [`dui-space-align-${align}`]: true },
+    { [`dui-space-${direction}`]: true }
   );
+
+  const gapMap = {
+    small: 8,
+    middle: 16,
+    large: 24,
+  };
+  const gap = typeof size === "number" ? size : gapMap[size] ?? 8;
+
+  const child = Children.toArray(children);
+
   return (
-    <button className={classNames} {...restprops}>
-      {children}
-    </button>
+    <div
+      className={classNames}
+      style={{ gap, flexWrap: wrap ? "wrap" : undefined, ...style }}
+    >
+      {child.map((ch, index) => {
+        return (
+          <Fragment key={index}>
+            <div className="dui-space-item">{ch}</div>
+            {index === child.length - 1 || !split ? null : (
+              <span className="dui-space-item-split">{split}</span>
+            )}
+          </Fragment>
+        );
+      })}
+    </div>
   );
 };
 
 Space.defaultProps = {
-  size: "middle",
+  size: "small",
+  align: "center",
   direction: "horizontal",
   wrap: false,
 };
